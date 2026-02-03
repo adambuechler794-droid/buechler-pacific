@@ -1,0 +1,71 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+
+  --color-ocean-50: #f0f7ff;
+  --color-ocean-100: #e0efff;
+  --color-ocean-200: #b9dfff;
+  --color-ocean-300: #7cc4ff;
+  --color-ocean-400: #36a5ff;
+  --color-ocean-500: #0c87f0;
+  --color-ocean-600: #0068cc;
+  --color-ocean-700: #0053a6;
+  --color-ocean-800: #0F4C81;
+  --color-ocean-900: #0a3459;
+  --color-ocean-950: #071f38;
+
+  --color-coral-50: #fff5f5;
+  --color-coral-100: #ffe0e0;
+  --color-coral-200: #ffbdbd;
+  --color-coral-300: #ff8a8a;
+  --color-coral-400: #FF6B6B;
+  --color-coral-500: #f04848;
+  --color-coral-600: #d63030;
+  --color-coral-700: #b32424;
+  --color-coral-800: #932222;
+  --color-coral-900: #7a2222;
+
+  --color-sand-50: #FAFAF8;
+  --color-sand-100: #F5F5F0;
+  --color-sand-200: #E8E8E0;
+  --color-sand-300: #D4D4C8;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: #2D3748;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+section[id] {
+  scroll-margin-top: 80px;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+.animation-delay-100 { animation-delay: 0.1s; }
+.animation-delay-200 { animation-delay: 0.2s; }
+.animation-delay-300 { animation-delay: 0.3s; }
+.animation-delay-400 { animation-delay: 0.4s; }
+.animation-delay-500 { animation-delay: 0.5s; }

@@ -1,31 +1,21 @@
-import {
-  Search,
-  Users,
-  GraduationCap,
-  IterationCw,
-} from 'lucide-react'
 import { useInView } from './useInView'
 
-const principles = [
+const steps = [
   {
-    icon: Search,
     title: 'Understand the Problem',
-    body: 'Most "data problems" are actually process problems. I start by understanding how decisions actually get made in your business, not how the org chart says they should be made.',
+    body: 'Most "data problems" are actually process problems. I start by understanding how decisions actually get made — not how the org chart says they should.',
   },
   {
-    icon: Users,
     title: 'Build for Adoption, Not Perfection',
-    body: 'A dashboard that\'s 80% accurate and gets checked daily beats a perfect model that sits unused. I focus on tools people will actually open. I work with an executive coach weekly specifically on adoption dynamics, because this is often harder than the technical work.',
+    body: 'A dashboard that\'s 80% accurate and gets checked daily beats a perfect model that sits unused. I work with an executive coach weekly on adoption dynamics, because this is often harder than the technical work.',
   },
   {
-    icon: GraduationCap,
     title: 'Transfer Knowledge',
     body: "I'm not trying to create dependency. You'll understand how your systems work, how to maintain them, and how to extend them when I'm gone.",
   },
   {
-    icon: IterationCw,
     title: 'Iterate Based on Reality',
-    body: "First version ships fast. Then we refine based on how your team actually uses it, not how they said they would.",
+    body: "First version ships fast. Then we refine based on how your team actually uses it — not how they said they would.",
   },
 ]
 
@@ -33,40 +23,42 @@ export default function HowIWork() {
   const [ref, inView] = useInView()
 
   return (
-    <section id="approach" className="py-20 sm:py-28 bg-white" ref={ref}>
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+    <section id="approach" className="py-24 sm:py-32 bg-stone-100" ref={ref}>
+      <div className="max-w-6xl mx-auto px-5 sm:px-8">
         {/* Section Header */}
-        <div className={`text-center mb-14 ${inView ? 'animate-fade-in-up' : 'opacity-0'}`}>
-          <p className="text-sm font-semibold text-coral-400 uppercase tracking-widest mb-3">
-            My Approach
+        <div className={`mb-16 ${inView ? 'anim-reveal' : 'opacity-0'}`}>
+          <p className="text-[12px] font-semibold text-copper-500 uppercase tracking-[0.2em] mb-4">
+            02 — Approach
           </p>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-ocean-900 mb-4">
+          <h2 className="font-serif text-4xl sm:text-5xl text-navy-900 mb-5">
             How I Work
           </h2>
-          <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+          <p className="text-lg text-slate-500 max-w-xl leading-relaxed">
             Technology is only useful if people use it. My process is designed
             to deliver systems that stick.
           </p>
         </div>
 
-        {/* Principles Grid */}
-        <div className="grid gap-8 sm:grid-cols-2">
-          {principles.map((p, i) => {
-            const Icon = p.icon
+        {/* Steps */}
+        <div className="grid gap-0 sm:grid-cols-2">
+          {steps.map((step, i) => {
+            const num = String(i + 1).padStart(2, '0')
             return (
               <div
-                key={p.title}
-                className={`flex gap-5 ${inView ? `animate-fade-in-up animation-delay-${(i + 1) * 100}` : 'opacity-0'}`}
+                key={step.title}
+                className={`group relative p-8 sm:p-10 border-t border-stone-200/80 sm:odd:border-r ${
+                  inView ? `anim-reveal del-${i + 1}` : 'opacity-0'
+                }`}
               >
-                <div className="w-12 h-12 rounded-xl bg-ocean-800 text-white flex items-center justify-center shrink-0">
-                  <Icon size={22} />
-                </div>
-                <div>
-                  <h3 className="text-lg font-bold text-ocean-900 mb-2">
-                    {p.title}
-                  </h3>
-                  <p className="text-slate-600 leading-relaxed">{p.body}</p>
-                </div>
+                <span className="font-serif text-4xl text-stone-200 group-hover:text-copper-200 transition-colors duration-500">
+                  {num}
+                </span>
+                <h3 className="text-lg font-semibold text-navy-900 mt-4 mb-3">
+                  {step.title}
+                </h3>
+                <p className="text-[14px] text-slate-500 leading-relaxed">
+                  {step.body}
+                </p>
               </div>
             )
           })}

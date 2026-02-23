@@ -1,5 +1,11 @@
 import { ArrowRight, ChevronDown } from 'lucide-react'
 
+const stats = [
+  { value: '$200K+', label: 'cost overruns identified' },
+  { value: '2 wks → 2 days', label: 'reporting cycle' },
+  { value: '95%', label: 'adoption in month one' },
+]
+
 export default function Hero() {
   const scrollTo = (e, id) => {
     e.preventDefault()
@@ -11,87 +17,96 @@ export default function Hero() {
       id="home"
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
-      {/* Background - ocean gradient with wave pattern */}
-      <div className="absolute inset-0 bg-gradient-to-br from-ocean-950 via-ocean-900 to-ocean-800" />
-      <div className="absolute inset-0 opacity-10">
-        <svg className="w-full h-full" preserveAspectRatio="none" viewBox="0 0 1440 800">
-          <path
-            d="M0,400 C360,300 720,500 1080,350 C1260,290 1380,360 1440,340 L1440,800 L0,800 Z"
-            fill="currentColor"
-            className="text-ocean-300"
-          />
-          <path
-            d="M0,500 C240,420 480,560 720,480 C960,400 1200,520 1440,460 L1440,800 L0,800 Z"
-            fill="currentColor"
-            className="text-ocean-400"
-            opacity="0.5"
-          />
-        </svg>
-      </div>
-
-      {/* Subtle grid overlay */}
+      {/* Background — gradient mesh */}
       <div
-        className="absolute inset-0 opacity-[0.03]"
+        className="absolute inset-0"
         style={{
-          backgroundImage:
-            'linear-gradient(rgba(255,255,255,.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.1) 1px, transparent 1px)',
-          backgroundSize: '60px 60px',
+          background: `
+            radial-gradient(ellipse at 20% 50%, rgba(30, 82, 120, 0.5) 0%, transparent 50%),
+            radial-gradient(ellipse at 80% 20%, rgba(200, 121, 65, 0.1) 0%, transparent 45%),
+            radial-gradient(ellipse at 60% 85%, rgba(18, 42, 70, 0.6) 0%, transparent 50%),
+            linear-gradient(160deg, #0A1628 0%, #122A46 50%, #0D1F35 100%)
+          `,
         }}
       />
 
-      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 text-center">
+      {/* Subtle grid */}
+      <div
+        className="absolute inset-0 opacity-[0.025]"
+        style={{
+          backgroundImage:
+            'linear-gradient(rgba(255,255,255,.15) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.15) 1px, transparent 1px)',
+          backgroundSize: '80px 80px',
+        }}
+      />
+
+      <div className="relative z-10 max-w-5xl mx-auto px-5 sm:px-8 text-center">
         {/* Badge */}
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/10 text-ocean-200 text-sm font-medium mb-8 animate-fade-in-up">
-          <span className="w-2 h-2 rounded-full bg-coral-400 animate-pulse" />
+        <div className="anim-reveal inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-white/10 text-white/50 text-[13px] font-medium tracking-wide mb-10">
+          <span className="w-1.5 h-1.5 rounded-full bg-copper-500 anim-pulse" />
           Based in Maui, Hawaii
         </div>
 
         {/* Headline */}
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight tracking-tight mb-6 animate-fade-in-up animation-delay-100">
-          Financial Intelligence Systems
+        <h1 className="anim-reveal del-1 font-serif text-5xl sm:text-6xl lg:text-[5.5rem] text-white leading-[1.05] tracking-tight mb-7">
+          Financial Intelligence
           <br />
-          <span className="text-ocean-300">
-            for Companies That Have Outgrown Excel
+          <span className="text-navy-300/80">
+            for Companies That Have
+          </span>
+          <br />
+          <span className="text-navy-300/80">
+            Outgrown Excel
           </span>
         </h1>
 
         {/* Subheadline */}
-        <p className="text-lg sm:text-xl text-ocean-200 max-w-2xl mx-auto mb-10 leading-relaxed animate-fade-in-up animation-delay-200">
+        <p className="anim-reveal del-2 text-lg sm:text-xl text-navy-300/70 max-w-2xl mx-auto mb-10 leading-relaxed font-light">
           I build data systems that finance teams actually use. Combining FP&A
-          expertise with data engineering, I help Hawaii companies turn their
-          financial data into automated insights, without hiring an entire BI team.
+          expertise with data engineering to turn financial data into automated
+          insights — without hiring an entire BI team.
         </p>
 
-        {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up animation-delay-300">
+        {/* CTA */}
+        <div className="anim-reveal del-3 flex flex-col sm:flex-row gap-4 justify-center mb-16">
           <a
             href="#contact"
             onClick={(e) => scrollTo(e, '#contact')}
-            className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-coral-400 hover:bg-coral-500 text-white font-semibold rounded-xl transition-all hover:shadow-lg hover:shadow-coral-400/25 hover:-translate-y-0.5"
+            className="group inline-flex items-center justify-center gap-2.5 px-7 py-3.5 bg-copper-500 hover:bg-copper-600 text-white font-semibold rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-copper-500/20"
           >
             Let&apos;s Talk About Your Data
-            <ArrowRight size={18} />
+            <ArrowRight size={16} className="transition-transform group-hover:translate-x-0.5" />
           </a>
           <a
             href="#work"
             onClick={(e) => scrollTo(e, '#work')}
-            className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-white/10 hover:bg-white/15 backdrop-blur-sm text-white font-semibold rounded-xl border border-white/20 transition-all hover:-translate-y-0.5"
+            className="inline-flex items-center justify-center gap-2 px-7 py-3.5 text-white/70 font-medium rounded-lg border border-white/10 hover:border-white/25 hover:text-white transition-all duration-300"
           >
             View My Work
           </a>
         </div>
 
-        {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-          <a
-            href="#services"
-            onClick={(e) => scrollTo(e, '#services')}
-            className="text-white/40 hover:text-white/70 transition-colors"
-            aria-label="Scroll to services"
-          >
-            <ChevronDown size={28} />
-          </a>
+        {/* Proof points */}
+        <div className="anim-reveal del-4 flex flex-col sm:flex-row items-center justify-center gap-8 sm:gap-12">
+          {stats.map((stat, i) => (
+            <div key={i} className="text-center">
+              <p className="font-serif text-2xl sm:text-3xl text-white/90">{stat.value}</p>
+              <p className="text-[13px] text-navy-400/70 mt-1 tracking-wide">{stat.label}</p>
+            </div>
+          ))}
         </div>
+      </div>
+
+      {/* Scroll indicator */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
+        <a
+          href="#services"
+          onClick={(e) => scrollTo(e, '#services')}
+          className="text-white/20 hover:text-white/40 transition-colors"
+          aria-label="Scroll to services"
+        >
+          <ChevronDown size={24} className="animate-bounce" />
+        </a>
       </div>
     </section>
   )

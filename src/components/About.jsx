@@ -1,22 +1,10 @@
-import { Briefcase, GraduationCap, Heart, Anchor } from 'lucide-react'
+import { Linkedin } from 'lucide-react'
 import { useInView } from './useInView'
 
 const experience = [
-  {
-    role: 'Director of FP&A',
-    company: 'Alpha Inc.',
-    detail: 'Construction & operations, Hawaii',
-  },
-  {
-    role: 'Finance & Analytics Roles',
-    company: 'End Group, Cutwater Spirits',
-    detail: 'CPG, spirits, and consumer brands',
-  },
-  {
-    role: 'Education',
-    company: 'UC Santa Barbara',
-    detail: 'Economics',
-  },
+  { role: 'Director of FP&A', org: 'Alpha Inc.', detail: 'Construction & operations, Hawaii' },
+  { role: 'Finance & Analytics', org: 'End Group, Cutwater Spirits', detail: 'CPG and consumer brands' },
+  { role: 'Economics', org: 'UC Santa Barbara', detail: '' },
 ]
 
 const interests = [
@@ -30,106 +18,85 @@ export default function About() {
   const [ref, inView] = useInView()
 
   return (
-    <section id="about" className="py-20 sm:py-28 bg-white" ref={ref}>
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+    <section id="about" className="py-24 sm:py-32 bg-stone-100" ref={ref}>
+      <div className="max-w-6xl mx-auto px-5 sm:px-8">
         {/* Section Header */}
-        <div className={`text-center mb-14 ${inView ? 'animate-fade-in-up' : 'opacity-0'}`}>
-          <p className="text-sm font-semibold text-coral-400 uppercase tracking-widest mb-3">
-            About
+        <div className={`mb-16 ${inView ? 'anim-reveal' : 'opacity-0'}`}>
+          <p className="text-[12px] font-semibold text-copper-500 uppercase tracking-[0.2em] mb-4">
+            04 — About
           </p>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-ocean-900 mb-4">
+          <h2 className="font-serif text-4xl sm:text-5xl text-navy-900">
             The Person Behind the Systems
           </h2>
         </div>
 
-        <div className={`grid gap-12 lg:grid-cols-5 items-start ${inView ? 'animate-fade-in-up animation-delay-200' : 'opacity-0'}`}>
-          {/* Photo Column */}
-          <div className="lg:col-span-2">
-            {/* Placeholder headshot - replace with real photo */}
-            <div className="aspect-[4/5] rounded-2xl bg-gradient-to-br from-ocean-100 to-ocean-200 flex items-center justify-center overflow-hidden">
-              <div className="text-center text-ocean-400">
-                <Anchor size={48} className="mx-auto mb-2 opacity-50" />
-                <span className="text-sm font-medium">Headshot Photo</span>
-              </div>
-            </div>
+        <div className={`grid gap-12 lg:grid-cols-5 ${inView ? 'anim-reveal del-2' : 'opacity-0'}`}>
+          {/* Left — Pull quote + CTA */}
+          <div className="lg:col-span-2 space-y-8">
+            <blockquote className="font-serif text-2xl sm:text-3xl text-navy-800 leading-snug">
+              "Someone had to actually fix the problem.
+              <span className="text-copper-500"> Turns out, having both the finance context and the technical skills is a pretty rare combination.</span>"
+            </blockquote>
+
+            <a
+              href="https://www.linkedin.com/in/adambuechler/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2.5 px-5 py-2.5 bg-navy-900 hover:bg-navy-800 text-white text-[13px] font-semibold rounded-lg transition-colors"
+            >
+              <Linkedin size={15} />
+              Connect on LinkedIn
+            </a>
           </div>
 
-          {/* Content Column */}
-          <div className="lg:col-span-3 space-y-6">
-            <div>
-              <h3 className="text-xl font-bold text-ocean-900 mb-3">
-                The Short Version
-              </h3>
-              <p className="text-lg text-slate-600 leading-relaxed">
-                I'm Adam Buechler, and I build financial intelligence systems for
-                growing companies.
+          {/* Right — Bio */}
+          <div className="lg:col-span-3 space-y-8">
+            <div className="space-y-4 text-[15px] text-slate-500 leading-relaxed">
+              <p>
+                I'm Adam Buechler. I started in traditional finance — FP&A, forecasting,
+                variance analysis, board reporting. But I kept running into the same problem:
+                the data systems we were supposed to rely on were either broken, manual, or nonexistent.
               </p>
-            </div>
-
-            <div>
-              <h3 className="text-xl font-bold text-ocean-900 mb-3">
-                The Longer Version
-              </h3>
-              <div className="space-y-4 text-slate-600 leading-relaxed">
-                <p>
-                  I started in traditional finance: FP&A, forecasting, variance
-                  analysis, board reporting. The usual. But I kept running into the
-                  same problem: the data systems we were supposed to rely on were
-                  either broken, manual, or nonexistent.
-                </p>
-                <p>
-                  So I learned to build them myself. SQL, Python, Power BI,
-                  Microsoft Fabric, automation tools. Not because I wanted to become
-                  a developer, but because someone had to actually fix the problem.
-                  Turns out, having both the finance context and the technical
-                  skills is a pretty rare combination. And it's exactly what most
-                  mid-market companies need.
-                </p>
-                <p>
-                  I'm not building a big consulting firm. I work with a small
-                  number of clients at a time and go deep. You get me, not a junior
-                  analyst learning on your project.
-                </p>
-              </div>
+              <p>
+                So I learned to build them myself. SQL, Python, Power BI, Microsoft Fabric,
+                automation tools. Not because I wanted to become a developer, but because
+                someone had to fix the problem.
+              </p>
+              <p>
+                I'm not building a big consulting firm. I work with a small number of clients
+                at a time and go deep. You get me — not a junior analyst learning on your project.
+              </p>
             </div>
 
             {/* Experience */}
             <div>
-              <h3 className="flex items-center gap-2 text-lg font-bold text-ocean-900 mb-4">
-                <Briefcase size={18} />
+              <h3 className="text-[12px] font-semibold text-copper-500 uppercase tracking-[0.2em] mb-4">
                 Background
               </h3>
               <div className="space-y-3">
                 {experience.map((exp) => (
-                  <div
-                    key={exp.role}
-                    className="flex items-start gap-3 p-3 rounded-xl bg-sand-50"
-                  >
-                    <div className="w-2 h-2 rounded-full bg-ocean-400 mt-2 shrink-0" />
+                  <div key={exp.role} className="flex items-baseline gap-3">
+                    <span className="w-1 h-1 rounded-full bg-navy-300 shrink-0 mt-2" />
                     <div>
-                      <p className="font-semibold text-ocean-900 text-sm">
-                        {exp.role}
-                      </p>
-                      <p className="text-sm text-slate-500">
-                        {exp.company}, {exp.detail}
-                      </p>
+                      <span className="text-[14px] font-semibold text-navy-900">{exp.role}</span>
+                      <span className="text-[14px] text-slate-400"> — {exp.org}</span>
+                      {exp.detail && <span className="text-[13px] text-slate-400">, {exp.detail}</span>}
                     </div>
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* Beyond the Resume */}
+            {/* Interests */}
             <div>
-              <h3 className="flex items-center gap-2 text-lg font-bold text-ocean-900 mb-4">
-                <Heart size={18} />
+              <h3 className="text-[12px] font-semibold text-copper-500 uppercase tracking-[0.2em] mb-4">
                 Beyond the Resume
               </h3>
               <div className="flex flex-wrap gap-2">
                 {interests.map((item) => (
                   <span
                     key={item}
-                    className="px-3 py-1.5 bg-ocean-50 text-ocean-700 text-sm font-medium rounded-lg"
+                    className="px-3 py-1.5 bg-white border border-stone-200/80 text-slate-500 text-[13px] rounded-lg"
                   >
                     {item}
                   </span>

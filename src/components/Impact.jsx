@@ -9,6 +9,7 @@ function AnimatedCounter({ target, suffix = '', prefix = '', active }) {
     if (!active || hasAnimated.current) return
     hasAnimated.current = true
 
+    let rafId
     const delay = setTimeout(() => {
       const duration = target > 10 ? 2000 : 600
       const startTime = performance.now()
@@ -18,13 +19,17 @@ function AnimatedCounter({ target, suffix = '', prefix = '', active }) {
         const progress = Math.min(elapsed / duration, 1)
         const eased = 1 - Math.pow(1 - progress, 3)
         setCount(Math.floor(eased * target))
-        if (progress < 1) requestAnimationFrame(animate)
+        if (progress < 1) rafId = requestAnimationFrame(animate)
       }
 
-      requestAnimationFrame(animate)
+      rafId = requestAnimationFrame(animate)
     }, 500)
 
-    return () => clearTimeout(delay)
+    return () => {
+      clearTimeout(delay)
+      if (rafId) cancelAnimationFrame(rafId)
+      hasAnimated.current = false
+    }
   }, [active, target])
 
   return <>{prefix}{count}{suffix}</>

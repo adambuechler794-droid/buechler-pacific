@@ -23,25 +23,21 @@ describe('Projects', () => {
     expect(screen.getByText(/maui surf forecast/i)).toBeInTheDocument()
   })
 
-  it('shows challenge and result for each project', () => {
+  it('shows a result for each project', () => {
     render(<Projects />)
-    // Check for challenge/result labels
-    const challenges = screen.getAllByText(/^challenge$/i)
-    const results = screen.getAllByText(/^result$/i)
-    expect(challenges).toHaveLength(5)
-    expect(results).toHaveLength(5)
+    expect(screen.getByText(/\$200K\+ in cost overruns/i)).toBeInTheDocument()
+    expect(screen.getByText(/2 weeks to 2 days/i)).toBeInTheDocument()
+    expect(screen.getByText(/95% adoption/i)).toBeInTheDocument()
+    expect(screen.getByText(/hours of analysis reduced/i)).toBeInTheDocument()
+    expect(screen.getByText(/live in production/i)).toBeInTheDocument()
   })
 
-  it('displays technology tags', () => {
+  it('displays category labels', () => {
     render(<Projects />)
-    expect(screen.getByText('Power BI')).toBeInTheDocument()
-    expect(screen.getAllByText('Microsoft Fabric').length).toBeGreaterThanOrEqual(1)
-    expect(screen.getAllByText('Python').length).toBeGreaterThanOrEqual(1)
-    expect(screen.getByText('React')).toBeInTheDocument()
-  })
-
-  it('does not render "Live" links when projects have no liveUrl', () => {
-    render(<Projects />)
-    expect(screen.queryByText('Live')).not.toBeInTheDocument()
+    expect(screen.getByText('Data Analytics')).toBeInTheDocument()
+    expect(screen.getByText('Data Architecture')).toBeInTheDocument()
+    expect(screen.getByText('Change Management')).toBeInTheDocument()
+    expect(screen.getByText('AI')).toBeInTheDocument()
+    expect(screen.getByText('Product')).toBeInTheDocument()
   })
 })

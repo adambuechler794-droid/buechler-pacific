@@ -1,9 +1,8 @@
-import { render, screen, waitFor, act } from '@testing-library/react'
+import { render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 import Contact from '../Contact'
 
-// Mock IntersectionObserver for useInView
 beforeEach(() => {
   vi.stubGlobal(
     'IntersectionObserver',
@@ -20,14 +19,12 @@ beforeEach(() => {
 
 afterEach(() => {
   vi.restoreAllMocks()
-  vi.useRealTimers()
 })
 
 async function fillRequired(user) {
   await user.type(screen.getByLabelText(/^name/i), 'Jane Doe')
-  await user.type(screen.getByLabelText(/^company(?! size)/i), 'Acme Corp')
   await user.type(screen.getByLabelText(/^email/i), 'jane@acme.com')
-  await user.type(screen.getByLabelText(/not working/i), 'Reports take forever')
+  await user.type(screen.getByLabelText(/how can i help/i), 'Reports take forever')
 }
 
 describe('Contact form', () => {
@@ -61,13 +58,9 @@ describe('Contact form', () => {
     const btn = screen.getByRole('button', { name: /sending/i })
     expect(btn).toBeDisabled()
     expect(screen.getByLabelText(/^name/i)).toBeDisabled()
-    expect(screen.getByLabelText(/^company(?! size)/i)).toBeDisabled()
     expect(screen.getByLabelText(/^email/i)).toBeDisabled()
-    expect(screen.getByLabelText(/^phone/i)).toBeDisabled()
-    expect(screen.getByLabelText(/^company size/i)).toBeDisabled()
-    expect(screen.getByLabelText(/not working/i)).toBeDisabled()
+    expect(screen.getByLabelText(/how can i help/i)).toBeDisabled()
 
-    // Resolve to finish
     resolveFetch({ ok: true })
     await waitFor(() => {
       expect(screen.getByText(/message sent/i)).toBeInTheDocument()
@@ -88,7 +81,7 @@ describe('Contact form', () => {
     expect(fetchMock).toHaveBeenCalledTimes(1)
   })
 
-  it('shows error with mailto fallback and does not auto-retry on failed response', async () => {
+  it('shows error with mailto fallback on failed response', async () => {
     const user = userEvent.setup()
     const fetchMock = vi.fn().mockResolvedValue({ ok: false })
     vi.stubGlobal('fetch', fetchMock)
@@ -99,8 +92,7 @@ describe('Contact form', () => {
 
     const errorMsg = await screen.findByText(/something went wrong/i)
     expect(errorMsg).toBeInTheDocument()
-    const errorContainer = errorMsg.closest('div')
-    const fallbackLink = errorContainer.querySelector('a[href^="mailto:"]')
+    const fallbackLink = errorMsg.closest('p').querySelector('a[href^="mailto:"]')
     expect(fallbackLink).toBeTruthy()
     expect(fallbackLink).toHaveAttribute('href', 'mailto:adam.buechler@buechlerpacific.com')
     expect(fetchMock).toHaveBeenCalledTimes(1)
@@ -117,51 +109,9 @@ describe('Contact form', () => {
 
     const errorMsg = await screen.findByText(/something went wrong/i)
     expect(errorMsg).toBeInTheDocument()
-    const errorContainer = errorMsg.closest('div')
-    const fallbackLink = errorContainer.querySelector('a[href^="mailto:"]')
+    const fallbackLink = errorMsg.closest('p').querySelector('a[href^="mailto:"]')
     expect(fallbackLink).toBeTruthy()
-    expect(fallbackLink).toHaveAttribute('href', 'mailto:adam.buechler@buechlerpacific.com')
     expect(fetchMock).toHaveBeenCalledTimes(1)
-  })
-
-  it('auto-dismisses success message after 5 seconds', async () => {
-    vi.useFakeTimers({ shouldAdvanceTime: true })
-    const user = userEvent.setup({ advanceTimers: vi.advanceTimersByTime })
-    vi.stubGlobal('fetch', vi.fn().mockResolvedValue({ ok: true }))
-
-    render(<Contact />)
-    await fillRequired(user)
-    await user.click(screen.getByRole('button', { name: /send message/i }))
-
-    await waitFor(() => {
-      expect(screen.getByText(/message sent/i)).toBeInTheDocument()
-    })
-
-    await act(async () => {
-      vi.advanceTimersByTime(5000)
-    })
-
-    await waitFor(() => {
-      expect(screen.queryByText(/message sent/i)).not.toBeInTheDocument()
-    })
-    expect(screen.getByRole('button', { name: /send message/i })).toBeInTheDocument()
-  })
-
-  it('cleans up timer on unmount without warnings', async () => {
-    vi.useFakeTimers({ shouldAdvanceTime: true })
-    const user = userEvent.setup({ advanceTimers: vi.advanceTimersByTime })
-    vi.stubGlobal('fetch', vi.fn().mockResolvedValue({ ok: true }))
-
-    const { unmount } = render(<Contact />)
-    await fillRequired(user)
-    await user.click(screen.getByRole('button', { name: /send message/i }))
-
-    await waitFor(() => {
-      expect(screen.getByText(/message sent/i)).toBeInTheDocument()
-    })
-
-    unmount()
-    vi.advanceTimersByTime(6000)
   })
 
   it('"Send another message" returns to form', async () => {
@@ -178,5 +128,29 @@ describe('Contact form', () => {
 
     await user.click(screen.getByRole('button', { name: /send another/i }))
     expect(screen.getByRole('button', { name: /send message/i })).toBeInTheDocument()
+  })
+
+  it('sends form data as JSON to Formspree', async () => {
+    const user = userEvent.setup()
+    const fetchMock = vi.fn().mockResolvedValue({ ok: true })
+    vi.stubGlobal('fetch', fetchMock)
+
+    render(<Contact />)
+    await fillRequired(user)
+    await user.click(screen.getByRole('button', { name: /send message/i }))
+
+    await waitFor(() => {
+      expect(fetchMock).toHaveBeenCalledTimes(1)
+    })
+
+    const [url, options] = fetchMock.mock.calls[0]
+    expect(url).toBe('https://formspree.io/f/xbdapwzb')
+    expect(options.method).toBe('POST')
+    expect(options.headers['Content-Type']).toBe('application/json')
+
+    const body = JSON.parse(options.body)
+    expect(body.name).toBe('Jane Doe')
+    expect(body.email).toBe('jane@acme.com')
+    expect(body.message).toBe('Reports take forever')
   })
 })

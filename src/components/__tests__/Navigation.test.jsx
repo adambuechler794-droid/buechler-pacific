@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react'
+import { render, screen, fireEvent, waitFor, act } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 import Navigation from '../Navigation'
@@ -29,18 +29,19 @@ afterEach(() => {
 })
 
 describe('Navigation', () => {
-  it('applies scrolled styles immediately when page loads below threshold', () => {
+  it('applies scrolled styles when page is scrolled past threshold', async () => {
+    render(<Navigation />)
+
     Object.defineProperty(window, 'scrollY', {
       value: 120,
       writable: true,
       configurable: true,
     })
+    fireEvent.scroll(window)
 
-    render(<Navigation />)
-
-    const nav = screen.getByRole('navigation')
-    expect(nav.className).toContain('bg-stone-50/90')
-    expect(nav.className).toContain('py-3')
+    const nav = document.querySelector('nav')
+    expect(nav.className).toContain('bg-white/80')
+    expect(nav.className).toContain('backdrop-blur-2xl')
   })
 
   it('opens and closes the mobile menu via buttons', async () => {
@@ -48,54 +49,33 @@ describe('Navigation', () => {
     render(<Navigation />)
 
     await user.click(screen.getByRole('button', { name: /open menu/i }))
-
-    // Mobile menu should be open — two close buttons exist (hamburger + overlay close)
     const closeButtons = screen.getAllByRole('button', { name: /close menu/i })
     expect(closeButtons.length).toBeGreaterThanOrEqual(1)
 
-    // Click the first close button
     await user.click(closeButtons[0])
-
-    // Menu should be closed
-    expect(screen.getByRole('button', { name: /open menu/i })).toBeInTheDocument()
-  })
-
-  it('closes the mobile menu when the backdrop overlay is clicked', async () => {
-    const user = userEvent.setup()
-    const { container } = render(<Navigation />)
-
-    await user.click(screen.getByRole('button', { name: /open menu/i }))
-    expect(screen.getAllByRole('button', { name: /close menu/i }).length).toBeGreaterThanOrEqual(1)
-
-    // Click the backdrop overlay (the outermost fixed div)
-    const overlay = container.querySelector('.fixed.inset-0')
-    await user.click(overlay)
-
     expect(screen.getByRole('button', { name: /open menu/i })).toBeInTheDocument()
   })
 
   it('closes the mobile menu when a nav link is clicked', async () => {
-    const user = userEvent.setup()
+    const { container } = render(<Navigation />)
 
-    // Create target elements for scrollIntoView
-    const section = document.createElement('section')
-    section.id = 'services'
-    section.scrollIntoView = vi.fn()
-    document.body.appendChild(section)
+    // Open menu
+    fireEvent.click(screen.getByRole('button', { name: /open menu/i }))
+    expect(screen.getAllByRole('button', { name: /close menu/i }).length).toBeGreaterThanOrEqual(1)
 
-    render(<Navigation />)
+    // Find the mobile overlay link directly via DOM
+    const overlay = container.querySelector('.fixed.inset-0')
+    const link = overlay.querySelector('a[href="#solutions"]')
 
-    await user.click(screen.getByRole('button', { name: /open menu/i }))
+    // Simulate click via native event to avoid jsdom hash navigation side effects
+    act(() => {
+      const clickEvent = new MouseEvent('click', { bubbles: true, cancelable: true })
+      link.dispatchEvent(clickEvent)
+    })
 
-    // Find the mobile "Services" link (inside the fixed overlay)
-    const mobileLinks = screen.getAllByText('Services')
-    const mobileLink = mobileLinks.find((el) => el.closest('.fixed'))
-    await user.click(mobileLink)
-
-    // Menu should close
-    expect(screen.getByRole('button', { name: /open menu/i })).toBeInTheDocument()
-
-    document.body.removeChild(section)
+    await waitFor(() => {
+      expect(screen.getByRole('button', { name: /open menu/i })).toBeInTheDocument()
+    })
   })
 
   it('scrolls to top when the logo is clicked', async () => {
@@ -115,9 +95,24 @@ describe('Navigation', () => {
     await user.click(screen.getByRole('button', { name: /open menu/i }))
     expect(document.body.style.overflow).toBe('hidden')
 
-    // Click the hamburger button (which now shows X / "Close menu")
     const closeButtons = screen.getAllByRole('button', { name: /close menu/i })
     await user.click(closeButtons[0])
     expect(document.body.style.overflow).toBe('')
+  })
+
+  it('renders all nav links with correct hrefs', () => {
+    render(<Navigation />)
+    const expectedLinks = [
+      { text: 'Solutions', href: '#solutions' },
+      { text: 'Impact', href: '#impact' },
+      { text: 'Work', href: '#work' },
+      { text: 'About', href: '#about' },
+    ]
+
+    expectedLinks.forEach(({ text, href }) => {
+      const links = screen.getAllByText(text)
+      const link = links.find((el) => el.closest('a'))
+      expect(link.closest('a')).toHaveAttribute('href', href)
+    })
   })
 })

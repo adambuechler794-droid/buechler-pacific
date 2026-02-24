@@ -16,38 +16,29 @@ beforeEach(() => {
 describe('Hero', () => {
   it('renders the main headline', () => {
     render(<Hero />)
-    expect(screen.getByText(/financial intelligence/i)).toBeInTheDocument()
-    expect(screen.getByText(/outgrown excel/i)).toBeInTheDocument()
+    expect(screen.getByText('Financial')).toBeInTheDocument()
+    expect(screen.getByText('Intelligence.')).toBeInTheDocument()
   })
 
-  it('renders the Maui badge', () => {
+  it('renders the overline brand name', () => {
     render(<Hero />)
-    expect(screen.getByText(/based in maui, hawaii/i)).toBeInTheDocument()
+    expect(screen.getByText('Buechler Pacific')).toBeInTheDocument()
   })
 
-  it('renders 3 proof-point stats', () => {
+  it('renders the subtext about AI-powered systems', () => {
     render(<Hero />)
-    expect(screen.getByText('$200K+')).toBeInTheDocument()
-    expect(screen.getByText(/2 wks → 2 days/)).toBeInTheDocument()
-    expect(screen.getByText('95%')).toBeInTheDocument()
+    expect(screen.getByText(/ai-powered systems/i)).toBeInTheDocument()
   })
 
-  it('renders proof-point labels', () => {
+  it('has a primary CTA linking to the contact section', () => {
     render(<Hero />)
-    expect(screen.getByText(/cost overruns identified/i)).toBeInTheDocument()
-    expect(screen.getByText(/reporting cycle/i)).toBeInTheDocument()
-    expect(screen.getByText(/adoption in month one/i)).toBeInTheDocument()
-  })
-
-  it('has a CTA linking to the contact section', () => {
-    render(<Hero />)
-    const ctaLink = screen.getByRole('link', { name: /let's talk/i })
+    const ctaLink = screen.getByRole('link', { name: /start a project/i })
     expect(ctaLink).toHaveAttribute('href', '#contact')
   })
 
-  it('has a secondary CTA linking to work section', () => {
+  it('has a secondary CTA linking to the work section', () => {
     render(<Hero />)
-    const workLink = screen.getByRole('link', { name: /view my work/i })
+    const workLink = screen.getByRole('link', { name: /view our work/i })
     expect(workLink).toHaveAttribute('href', '#work')
   })
 })

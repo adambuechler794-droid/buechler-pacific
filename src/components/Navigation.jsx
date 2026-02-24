@@ -81,7 +81,7 @@ export default function Navigation() {
           <a
             key={link.href}
             href={link.href}
-            onClick={() => setMenuOpen(false)}
+            onClick={() => { document.body.style.overflow = ''; setMenuOpen(false) }}
             className="font-display text-3xl font-bold text-apple-text/70 hover:text-apple-text transition-colors"
           >
             {link.label}
@@ -89,7 +89,7 @@ export default function Navigation() {
         ))}
         <a
           href="#contact"
-          onClick={() => setMenuOpen(false)}
+          onClick={() => { document.body.style.overflow = ''; setMenuOpen(false) }}
           className="mt-4 text-lg bg-apple-text text-white px-8 py-3 rounded-full font-medium"
         >
           Start a Project

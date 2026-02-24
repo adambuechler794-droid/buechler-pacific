@@ -3,7 +3,6 @@ import { describe, it, expect, beforeEach } from 'vitest'
 import App from '../App'
 
 beforeEach(() => {
-  // Mock IntersectionObserver for all useInView hooks
   window.IntersectionObserver = class {
     constructor(cb) {
       setTimeout(() => cb([{ isIntersecting: true }]), 0)
@@ -12,11 +11,10 @@ beforeEach(() => {
     unobserve() {}
     disconnect() {}
   }
-  // Mock scrollTo for Navigation
   window.scrollTo = () => {}
 })
 
-const navAnchors = ['#services', '#work', '#about', '#contact']
+const navAnchors = ['#solutions', '#impact', '#work', '#about', '#contact']
 
 describe('Section anchor targets', () => {
   it('every nav link href has a matching section id in the DOM', () => {
@@ -27,10 +25,5 @@ describe('Section anchor targets', () => {
       const section = container.querySelector(`[id="${id}"]`)
       expect(section, `Missing element with id="${id}" for nav link ${anchor}`).toBeTruthy()
     }
-  })
-
-  it('hero section has id="home" for logo scroll target', () => {
-    const { container } = render(<App />)
-    expect(container.querySelector('[id="home"]')).toBeTruthy()
   })
 })

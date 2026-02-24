@@ -14,9 +14,9 @@ beforeEach(() => {
 })
 
 describe('About', () => {
-  it('renders the pull quote', () => {
+  it('renders the name heading', () => {
     render(<About />)
-    expect(screen.getByText(/someone had to actually fix the problem/i)).toBeInTheDocument()
+    expect(screen.getByText('Adam Buechler')).toBeInTheDocument()
   })
 
   it('has a LinkedIn CTA linking to the correct profile', () => {
@@ -26,23 +26,18 @@ describe('About', () => {
     expect(linkedinLink).toHaveAttribute('target', '_blank')
   })
 
-  it('renders experience history', () => {
+  it('renders bio paragraphs', () => {
     render(<About />)
-    expect(screen.getByText('Director of FP&A')).toBeInTheDocument()
-    expect(screen.getByText(/alpha inc/i)).toBeInTheDocument()
-    expect(screen.getByText(/finance & analytics/i)).toBeInTheDocument()
+    expect(screen.getByText(/intersection of finance and engineering/i)).toBeInTheDocument()
+    expect(screen.getByText(/director of fp&a at alpha inc/i)).toBeInTheDocument()
     expect(screen.getByText(/uc santa barbara/i)).toBeInTheDocument()
   })
 
-  it('renders interest tags', () => {
+  it('renders credential tags', () => {
     render(<About />)
-    expect(screen.getByText(/maui chamber of commerce/i)).toBeInTheDocument()
-    expect(screen.getByText(/surfrider foundation/i)).toBeInTheDocument()
-    expect(screen.getByText(/surf forecast apps/i)).toBeInTheDocument()
-  })
-
-  it('renders the bio text', () => {
-    render(<About />)
-    expect(screen.getByText(/i'm adam buechler/i)).toBeInTheDocument()
+    expect(screen.getByText('Director of FP&A')).toBeInTheDocument()
+    expect(screen.getByText('Microsoft Fabric')).toBeInTheDocument()
+    expect(screen.getByText('AI Engineering')).toBeInTheDocument()
+    expect(screen.getByText('Maui, Hawaii')).toBeInTheDocument()
   })
 })

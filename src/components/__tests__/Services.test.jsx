@@ -14,29 +14,30 @@ beforeEach(() => {
 })
 
 describe('Services', () => {
-  it('renders exactly 4 service cards', () => {
+  it('renders all 4 service cards', () => {
     render(<Services />)
     const titles = [
-      'Financial Planning & Analysis',
-      'Power BI & Data Analytics',
-      'Data Architecture & Engineering',
       'AI & Custom Applications',
+      'Financial Planning & Analysis',
+      'Power BI & Analytics',
+      'Data Architecture',
     ]
     titles.forEach((title) => {
       expect(screen.getByText(title)).toBeInTheDocument()
     })
   })
 
-  it('marks FP&A as the featured/core service', () => {
-    render(<Services />)
-    expect(screen.getByText('Core')).toBeInTheDocument()
+  it('marks AI & Custom Applications as the featured service', () => {
+    const { container } = render(<Services />)
+    const aiCard = screen.getByText('AI & Custom Applications').closest('[class*="card-light"]')
+    expect(aiCard.className).toContain('md:col-span-2')
   })
 
-  it('renders service line items', () => {
+  it('renders feature pills for each service', () => {
     render(<Services />)
-    expect(screen.getByText(/multi-scenario planning/i)).toBeInTheDocument()
-    expect(screen.getByText(/custom dashboards built/i)).toBeInTheDocument()
-    expect(screen.getByText(/microsoft fabric implementation/i)).toBeInTheDocument()
-    expect(screen.getByText(/custom gpt-powered/i)).toBeInTheDocument()
+    expect(screen.getByText('Custom GPT Tools')).toBeInTheDocument()
+    expect(screen.getByText('Scenario Planning')).toBeInTheDocument()
+    expect(screen.getByText('Custom Dashboards')).toBeInTheDocument()
+    expect(screen.getByText('Microsoft Fabric')).toBeInTheDocument()
   })
 })

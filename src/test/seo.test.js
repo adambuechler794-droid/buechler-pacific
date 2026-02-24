@@ -36,9 +36,9 @@ describe('SEO meta tags in index.html', () => {
     expect(html).toMatch(/name="twitter:description"/)
   })
 
-  it('loads Instrument Serif and Plus Jakarta Sans fonts', () => {
-    expect(html).toMatch(/Instrument\+Serif/)
-    expect(html).toMatch(/Plus\+Jakarta\+Sans/)
+  it('loads DM Sans and Outfit fonts', () => {
+    expect(html).toMatch(/DM\+Sans/)
+    expect(html).toMatch(/Outfit/)
   })
 
   it('has lang="en" on html tag', () => {

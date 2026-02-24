@@ -1,74 +1,40 @@
-import { useState, useEffect, useRef } from 'react'
-import {
-  Mail,
-  Phone,
-  MapPin,
-  ArrowRight,
-  CheckCircle2,
-  AlertCircle,
-} from 'lucide-react'
+import { useState, useRef } from 'react'
+import { Mail, Phone, MapPin, ArrowRight, Send } from 'lucide-react'
 import { useInView } from './useInView'
 
-const initialForm = {
-  name: '',
-  company: '',
-  email: '',
-  phone: '',
-  companySize: '',
-  challenge: '',
-}
-
-const companySizes = ['<$1M', '$1–5M', '$5–25M', '$25–100M', '$100M+']
-
 export default function Contact() {
-  const [form, setForm] = useState(initialForm)
+  const [submitted, setSubmitted] = useState(false)
   const [status, setStatus] = useState('idle')
   const [ref, inView] = useInView()
-  const dismissTimer = useRef(null)
   const submitInFlight = useRef(false)
-
-  // Auto-dismiss success message after 5 seconds
-  useEffect(() => {
-    if (status === 'sent') {
-      dismissTimer.current = setTimeout(() => setStatus('idle'), 5000)
-    }
-    return () => clearTimeout(dismissTimer.current)
-  }, [status])
-
-  const update = (field, value) =>
-    setForm((prev) => ({ ...prev, [field]: value }))
-
-  const postForm = async () => {
-    const res = await fetch('https://formspree.io/f/xbdapwzb', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
-      body: JSON.stringify({
-        name: form.name,
-        _replyto: form.email,
-        email: form.email,
-        company: form.company,
-        phone: form.phone,
-        companySize: form.companySize,
-        challenge: form.challenge,
-      }),
-    })
-    if (!res.ok) throw new Error('Network error')
-  }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     if (submitInFlight.current) return
-
     submitInFlight.current = true
     setStatus('sending')
 
     try {
-      await postForm()
-      setStatus('sent')
-      setForm(initialForm)
+      const form = e.target
+      const formData = Object.fromEntries(new FormData(form))
+      formData._replyto = formData.email
+
+      const res = await fetch('https://formspree.io/f/xbdapwzb', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+
+      if (res.ok) {
+        setSubmitted(true)
+        setStatus('idle')
+        form.reset()
+      } else {
+        setStatus('error')
+      }
     } catch {
       setStatus('error')
     } finally {
@@ -76,205 +42,154 @@ export default function Contact() {
     }
   }
 
-  const inputClass =
-    'w-full px-4 py-3 rounded-lg border border-stone-200 bg-stone-50 text-[14px] text-navy-900 placeholder:text-slate-300 focus:outline-none focus:border-navy-400 focus:bg-white transition-all duration-300'
+  const inputClasses =
+    'w-full bg-white/[0.06] border border-white/[0.1] rounded-xl px-4 py-3.5 text-white text-sm placeholder:text-white/25 focus:outline-none focus:border-apple-blue/40 transition-colors duration-300'
   const isSending = status === 'sending'
 
   return (
-    <section id="contact" className="py-24 sm:py-32 bg-stone-100" ref={ref}>
-      <div className="max-w-6xl mx-auto px-5 sm:px-8">
-        {/* Section Header */}
-        <div className={`mb-16 ${inView ? 'anim-reveal' : 'opacity-0'}`}>
-          <p className="text-[12px] font-semibold text-copper-500 uppercase tracking-[0.2em] mb-4">
-            Get Started
-          </p>
-          <h2 className="font-serif text-4xl sm:text-5xl text-navy-900 mb-5">
-            Ready to turn your data
-            <br className="hidden sm:block" />
-            into systems?
-          </h2>
-          <p className="text-lg text-slate-500 max-w-xl leading-relaxed">
-            Tell me about your situation. I&apos;ll get back to you within one business day.
-          </p>
-        </div>
+    <section id="contact" className="relative py-28 sm:py-36 bg-apple-dark text-white" ref={ref}>
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
+          {/* Left column */}
+          <div className={`reveal ${inView ? 'in-view' : ''}`}>
+            <p className="text-[13px] text-apple-dark-secondary tracking-[0.2em] uppercase mb-4 font-medium">
+              Contact
+            </p>
+            <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight">
+              Let&apos;s build
+              <br />
+              something.
+            </h2>
+            <p className="mt-6 text-lg text-white/40 leading-relaxed max-w-md">
+              Have a data challenge? Let&apos;s talk about how AI-powered systems
+              can transform your operations.
+            </p>
 
-        <div className={`grid gap-12 lg:grid-cols-5 ${inView ? 'anim-reveal del-2' : 'opacity-0'}`}>
-          {/* Sidebar */}
-          <div className="lg:col-span-2 space-y-6">
-            <div className="space-y-4">
-              {[
-                { icon: Mail, label: 'adam.buechler@buechlerpacific.com', href: 'mailto:adam.buechler@buechlerpacific.com' },
-                { icon: Phone, label: '+1 808 525 3076', href: 'tel:+18085253076' },
-                { icon: MapPin, label: 'Maui, Hawaii' },
-              ].map((item) => {
-                const Wrapper = item.href ? 'a' : 'div'
-                return (
-                  <Wrapper
-                    key={item.label}
-                    {...(item.href ? { href: item.href } : {})}
-                    className="flex items-center gap-3 text-slate-500 hover:text-navy-700 transition-colors group"
-                  >
-                    <div className="w-9 h-9 rounded-lg bg-white border border-stone-200/80 flex items-center justify-center group-hover:border-navy-200 transition-colors">
-                      <item.icon size={16} className="text-navy-600" />
-                    </div>
-                    <span className="text-[14px]">{item.label}</span>
-                  </Wrapper>
-                )
-              })}
-            </div>
-
-            <div className="pt-4">
-              <p className="text-[13px] text-slate-400 leading-relaxed">
-                Prefer email? Reach me directly at{' '}
-                <a
-                  href="mailto:adam.buechler@buechlerpacific.com"
-                  className="text-navy-600 hover:text-navy-800 font-medium transition-colors"
-                >
-                  adam.buechler@buechlerpacific.com
-                </a>
-              </p>
+            <div className="mt-12 space-y-5">
+              <a
+                href="mailto:adam.buechler@buechlerpacific.com"
+                className="flex items-center gap-4 text-white/50 hover:text-white transition-colors group"
+              >
+                <div className="w-10 h-10 rounded-full bg-white/[0.06] flex items-center justify-center group-hover:bg-white/[0.1] transition-colors">
+                  <Mail size={16} />
+                </div>
+                <span className="text-sm">adam.buechler@buechlerpacific.com</span>
+              </a>
+              <a
+                href="tel:+18085253076"
+                className="flex items-center gap-4 text-white/50 hover:text-white transition-colors group"
+              >
+                <div className="w-10 h-10 rounded-full bg-white/[0.06] flex items-center justify-center group-hover:bg-white/[0.1] transition-colors">
+                  <Phone size={16} />
+                </div>
+                <span className="text-sm">+1 (808) 525-3076</span>
+              </a>
+              <div className="flex items-center gap-4 text-white/50">
+                <div className="w-10 h-10 rounded-full bg-white/[0.06] flex items-center justify-center">
+                  <MapPin size={16} />
+                </div>
+                <span className="text-sm">Maui, Hawaii</span>
+              </div>
             </div>
           </div>
 
-          {/* Form */}
-          <div className="lg:col-span-3">
-            {status === 'sent' ? (
-              <div className="flex flex-col items-center justify-center text-center py-16 px-8 bg-white rounded-2xl border border-stone-200/80">
-                <CheckCircle2 size={40} className="text-emerald-500 mb-4" />
-                <h3 className="font-serif text-2xl text-navy-900 mb-2">Message Sent</h3>
-                <p className="text-[14px] text-slate-500 mb-6">
-                  Thanks for reaching out. I&apos;ll get back to you within one business day.
-                </p>
-                <button
-                  onClick={() => setStatus('idle')}
-                  className="text-[13px] font-semibold text-navy-600 hover:text-navy-800 transition-colors"
-                >
-                  Send another message
-                </button>
+          {/* Right column: form */}
+          <div className={`reveal ${inView ? 'in-view' : ''} reveal-delay-2`}>
+            {submitted ? (
+              <div className="h-full min-h-[400px] flex items-center justify-center">
+                <div className="text-center">
+                  <div className="w-16 h-16 rounded-full bg-white/[0.06] flex items-center justify-center mx-auto mb-6">
+                    <Send size={24} className="text-white/60" />
+                  </div>
+                  <h3 className="font-display text-2xl font-bold mb-2">Message sent.</h3>
+                  <p className="text-white/40">I&apos;ll get back to you within one business day.</p>
+                  <button
+                    onClick={() => { setSubmitted(false); setStatus('idle') }}
+                    className="mt-6 text-sm text-apple-blue hover:underline underline-offset-4 transition-all"
+                  >
+                    Send another message
+                  </button>
+                </div>
               </div>
             ) : (
-              <form
-                onSubmit={handleSubmit}
-                aria-busy={isSending}
-                className="bg-white rounded-2xl border border-stone-200/80 p-7 sm:p-8 space-y-5"
-              >
-                <div className="grid gap-5 sm:grid-cols-2">
+              <form onSubmit={handleSubmit} className="space-y-5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <div>
-                    <label htmlFor="name" className="block text-[13px] font-medium text-navy-800 mb-1.5">
-                      Name <span className="text-copper-500">*</span>
+                    <label htmlFor="name" className="block text-xs text-white/40 uppercase tracking-wider mb-2">
+                      Name
                     </label>
                     <input
+                      type="text"
                       id="name"
+                      name="name"
                       required
-                      type="text"
                       disabled={isSending}
-                      value={form.name}
-                      onChange={(e) => update('name', e.target.value)}
-                      className={inputClass}
+                      className={inputClasses}
+                      placeholder="Your name"
                     />
                   </div>
                   <div>
-                    <label htmlFor="company" className="block text-[13px] font-medium text-navy-800 mb-1.5">
-                      Company <span className="text-copper-500">*</span>
+                    <label htmlFor="company" className="block text-xs text-white/40 uppercase tracking-wider mb-2">
+                      Company
                     </label>
                     <input
+                      type="text"
                       id="company"
-                      required
-                      type="text"
+                      name="company"
                       disabled={isSending}
-                      value={form.company}
-                      onChange={(e) => update('company', e.target.value)}
-                      className={inputClass}
-                    />
-                  </div>
-                </div>
-
-                <div className="grid gap-5 sm:grid-cols-2">
-                  <div>
-                    <label htmlFor="email" className="block text-[13px] font-medium text-navy-800 mb-1.5">
-                      Email <span className="text-copper-500">*</span>
-                    </label>
-                    <input
-                      id="email"
-                      required
-                      type="email"
-                      disabled={isSending}
-                      value={form.email}
-                      onChange={(e) => update('email', e.target.value)}
-                      className={inputClass}
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="phone" className="block text-[13px] font-medium text-navy-800 mb-1.5">
-                      Phone
-                    </label>
-                    <input
-                      id="phone"
-                      type="tel"
-                      disabled={isSending}
-                      value={form.phone}
-                      onChange={(e) => update('phone', e.target.value)}
-                      className={inputClass}
+                      className={inputClasses}
+                      placeholder="Company name"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label htmlFor="companySize" className="block text-[13px] font-medium text-navy-800 mb-1.5">
-                    Company Size (Revenue)
+                  <label htmlFor="email" className="block text-xs text-white/40 uppercase tracking-wider mb-2">
+                    Email
                   </label>
-                  <select
-                    id="companySize"
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    required
                     disabled={isSending}
-                    value={form.companySize}
-                    onChange={(e) => update('companySize', e.target.value)}
-                    className={inputClass}
-                  >
-                    <option value="">Select...</option>
-                    {companySizes.map((s) => (
-                      <option key={s} value={s}>{s}</option>
-                    ))}
-                  </select>
+                    className={inputClasses}
+                    placeholder="you@company.com"
+                  />
                 </div>
 
                 <div>
-                  <label htmlFor="challenge" className="block text-[13px] font-medium text-navy-800 mb-1.5">
-                    What&apos;s not working? <span className="text-copper-500">*</span>
+                  <label htmlFor="message" className="block text-xs text-white/40 uppercase tracking-wider mb-2">
+                    How can I help?
                   </label>
                   <textarea
-                    id="challenge"
+                    id="message"
+                    name="message"
+                    rows={5}
                     required
-                    rows={4}
                     disabled={isSending}
-                    value={form.challenge}
-                    onChange={(e) => update('challenge', e.target.value)}
-                    placeholder="Tell me about what's broken with your current data or reporting setup..."
-                    className={`${inputClass} resize-y`}
+                    className={`${inputClasses} resize-none`}
+                    placeholder="Tell me about your data challenge..."
                   />
                 </div>
 
                 {status === 'error' && (
-                  <div className="flex items-center gap-2 text-[13px] text-red-600 bg-red-50 p-3 rounded-lg">
-                    <AlertCircle size={15} />
-                    Something went wrong. Email me directly at{' '}
-                    <a href="mailto:adam.buechler@buechlerpacific.com" className="underline font-medium">
+                  <p className="text-sm text-red-400">
+                    Something went wrong. Try emailing me directly at{' '}
+                    <a href="mailto:adam.buechler@buechlerpacific.com" className="underline">
                       adam.buechler@buechlerpacific.com
                     </a>
-                  </div>
+                  </p>
                 )}
 
                 <button
                   type="submit"
                   disabled={isSending}
-                  className="group w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-3 bg-copper-500 hover:bg-copper-600 disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold text-[14px] rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-copper-500/20"
+                  className="group w-full flex items-center justify-center gap-2 bg-white text-apple-text py-3.5 rounded-full font-semibold text-sm hover:bg-white/90 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  {isSending ? (
-                    'Sending...'
-                  ) : (
-                    <>
-                      Send Message
-                      <ArrowRight size={15} className="transition-transform group-hover:translate-x-0.5" />
-                    </>
+                  {isSending ? 'Sending...' : 'Send Message'}
+                  {!isSending && (
+                    <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
                   )}
                 </button>
               </form>

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 
 export function useInView(options = {}) {
-  const { threshold = 0.1, root = null, rootMargin = '0px' } = options
+  const { threshold = 0.15, root = null, rootMargin = '0px' } = options
   const ref = useRef(null)
   const [isInView, setIsInView] = useState(false)
 

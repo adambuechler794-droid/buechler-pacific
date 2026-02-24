@@ -1,137 +1,82 @@
-import { ArrowUpRight } from 'lucide-react'
 import { useInView } from './useInView'
 
 const projects = [
   {
+    category: 'Data Analytics',
     title: 'Multi-Island Construction Project Analytics',
-    challenge:
-      'A Hawaii-based construction company with operations across multiple islands needed real-time visibility into project financials. Data lived in NetSuite and HCSS with no connection between them.',
-    result:
-      'Leadership now has daily visibility into project margins. Identified $200K+ in cost overruns within the first month.',
-    tags: ['Power BI', 'NetSuite', 'HCSS', 'DAX', 'SQL'],
+    description:
+      'Integrated NetSuite and HCSS data across island operations, enabling real-time project cost tracking and variance analysis.',
+    result: '$200K+ in cost overruns identified',
   },
   {
+    category: 'Data Architecture',
     title: 'Enterprise Data Architecture on Microsoft Fabric',
-    challenge:
-      'Growing company with data scattered across dozens of Excel files, multiple SaaS platforms, and legacy databases. No single source of truth.',
-    result:
-      'Reduced monthly reporting cycle from 2 weeks to 2 days. Finance team now analyzes data instead of reconciling it.',
-    tags: ['Microsoft Fabric', 'Lakehouse', 'Data Pipelines', 'Python'],
+    description:
+      'Designed and implemented a unified data platform consolidating multiple source systems into a single analytical layer.',
+    result: 'Reporting reduced from 2 weeks to 2 days',
   },
   {
-    title: 'Excel-to-Fabric Workflow',
-    challenge:
-      'Teams deeply embedded in Excel refused to adopt new tools. Previous BI implementations failed because they required people to completely change how they work.',
-    result:
-      'Achieved 95% adoption in month one vs. less than 20% on previous rollouts. Users didn\'t have to change their workflow.',
-    tags: ['Excel', 'Microsoft Fabric', 'Power Automate'],
+    category: 'Change Management',
+    title: 'Excel-to-Fabric Workflow Transition',
+    description:
+      'Built bridge tools that met finance teams in Excel while pulling from Fabric — achieving adoption without disruption.',
+    result: '95% adoption in month one',
   },
   {
+    category: 'AI',
     title: 'AI-Powered Forecast Analysis Assistant',
-    challenge:
-      'CFO needed to quickly query forecast assumptions and compare scenarios without waiting for analyst availability.',
-    result:
-      'CFO gets instant answers to questions like "What happens to Q3 margins if material costs increase 15%?"',
-    tags: ['Custom GPT', 'OpenAI API', 'Python', 'Financial Modeling'],
+    description:
+      'Built a custom GPT that lets the CFO query budget scenarios, compare actuals, and generate board-ready commentary in seconds.',
+    result: 'Hours of analysis reduced to seconds',
   },
   {
+    category: 'Product',
     title: 'Maui Surf Forecast System',
-    challenge:
-      'Local surf community needed accurate, consolidated forecast data for Maui breaks instead of checking multiple sources.',
-    result:
-      'Used daily by local surfers. Demonstrates consumer-grade web applications with real-time data integration.',
-    tags: ['React', 'NOAA API', 'Node.js', 'Vercel'],
+    description:
+      'Consumer web application integrating NOAA buoy data and weather APIs to deliver actionable surf forecasts for Maui breaks.',
+    result: 'Personal project — live in production',
   },
 ]
-
-function ProjectCard({ project, index }) {
-  const num = String(index + 1).padStart(2, '0')
-
-  return (
-    <div className="group p-7 sm:p-8 rounded-2xl bg-white border border-stone-200/80 hover:border-navy-200 transition-all duration-500 hover:shadow-lg hover:shadow-navy-900/5">
-      {/* Header */}
-      <div className="flex items-start justify-between mb-5">
-        <span className="font-serif text-3xl text-stone-200 group-hover:text-copper-200 transition-colors duration-500">
-          {num}
-        </span>
-        {project.liveUrl && (
-          <a
-            href={project.liveUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-1 text-[13px] font-medium text-copper-500 hover:text-copper-600 transition-colors"
-          >
-            Live
-            <ArrowUpRight size={13} />
-          </a>
-        )}
-      </div>
-
-      <h3 className="text-lg font-semibold text-navy-900 mb-4 group-hover:text-navy-700 transition-colors">
-        {project.title}
-      </h3>
-
-      <div className="space-y-4 mb-6">
-        <div>
-          <span className="text-[11px] font-semibold uppercase tracking-[0.15em] text-slate-400">
-            Challenge
-          </span>
-          <p className="text-[14px] text-slate-500 mt-1.5 leading-relaxed">
-            {project.challenge}
-          </p>
-        </div>
-        <div>
-          <span className="text-[11px] font-semibold uppercase tracking-[0.15em] text-copper-500">
-            Result
-          </span>
-          <p className="text-[14px] text-slate-600 mt-1.5 leading-relaxed font-medium">
-            {project.result}
-          </p>
-        </div>
-      </div>
-
-      {/* Tags */}
-      <div className="flex flex-wrap gap-1.5">
-        {project.tags.map((tag) => (
-          <span
-            key={tag}
-            className="px-2.5 py-1 bg-navy-50 text-navy-600 text-[11px] font-medium rounded-md"
-          >
-            {tag}
-          </span>
-        ))}
-      </div>
-    </div>
-  )
-}
 
 export default function Projects() {
   const [ref, inView] = useInView()
 
   return (
-    <section id="work" className="py-24 sm:py-32 bg-stone-50" ref={ref}>
-      <div className="max-w-6xl mx-auto px-5 sm:px-8">
-        {/* Section Header */}
-        <div className={`mb-16 ${inView ? 'anim-reveal' : 'opacity-0'}`}>
-          <p className="text-[12px] font-semibold text-copper-500 uppercase tracking-[0.2em] mb-4">
-            03 — Work
+    <section id="work" className="relative py-28 sm:py-36 bg-apple-dark text-white" ref={ref}>
+      <div className="max-w-7xl mx-auto px-6">
+        <div className={`reveal ${inView ? 'in-view' : ''} max-w-2xl mb-16`}>
+          <p className="text-[13px] text-apple-dark-secondary tracking-[0.2em] uppercase mb-4 font-medium">
+            Selected Work
           </p>
-          <h2 className="font-serif text-4xl sm:text-5xl text-navy-900 mb-5">
-            Projects & Case Studies
+          <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight">
+            Case studies.
           </h2>
-          <p className="text-lg text-slate-500 max-w-xl leading-relaxed">
-            Real problems, real solutions, real results.
-          </p>
         </div>
 
-        {/* Projects Grid */}
-        <div className="grid gap-5 md:grid-cols-2">
+        <div className="grid grid-cols-1 gap-4">
           {projects.map((project, i) => (
             <div
               key={project.title}
-              className={inView ? `anim-reveal del-${Math.min(i + 1, 5)}` : 'opacity-0'}
+              className={`reveal ${inView ? 'in-view' : ''} reveal-delay-${Math.min(i + 1, 5)} card-dark group p-8 sm:p-10`}
             >
-              <ProjectCard project={project} index={i} />
+              <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6">
+                <div className="flex-1">
+                  <span className="inline-block text-[11px] font-semibold text-apple-dark-secondary uppercase tracking-[0.15em] mb-3">
+                    {project.category}
+                  </span>
+                  <h3 className="font-display text-xl sm:text-2xl font-bold mb-3 group-hover:text-apple-blue transition-colors duration-300">
+                    {project.title}
+                  </h3>
+                  <p className="text-white/40 text-sm leading-relaxed max-w-2xl">
+                    {project.description}
+                  </p>
+                </div>
+                <div className="lg:text-right shrink-0">
+                  <p className="text-sm font-semibold text-apple-blue">
+                    {project.result}
+                  </p>
+                </div>
+              </div>
             </div>
           ))}
         </div>

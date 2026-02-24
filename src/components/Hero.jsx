@@ -1,112 +1,49 @@
-import { ArrowRight, ChevronDown } from 'lucide-react'
-
-const stats = [
-  { value: '$200K+', label: 'cost overruns identified' },
-  { value: '2 wks → 2 days', label: 'reporting cycle' },
-  { value: '95%', label: 'adoption in month one' },
-]
+import { ArrowRight } from 'lucide-react'
 
 export default function Hero() {
-  const scrollTo = (e, id) => {
-    e.preventDefault()
-    document.querySelector(id)?.scrollIntoView({ behavior: 'smooth' })
-  }
-
   return (
     <section
-      id="home"
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      style={{ background: 'radial-gradient(ellipse at 50% 40%, #fff 0%, #f5f5f7 70%)' }}
     >
-      {/* Background — gradient mesh */}
-      <div
-        className="absolute inset-0"
-        style={{
-          background: `
-            radial-gradient(ellipse at 20% 50%, rgba(30, 82, 120, 0.5) 0%, transparent 50%),
-            radial-gradient(ellipse at 80% 20%, rgba(200, 121, 65, 0.1) 0%, transparent 45%),
-            radial-gradient(ellipse at 60% 85%, rgba(18, 42, 70, 0.6) 0%, transparent 50%),
-            linear-gradient(160deg, #0A1628 0%, #122A46 50%, #0D1F35 100%)
-          `,
-        }}
-      />
-
-      {/* Subtle grid */}
-      <div
-        className="absolute inset-0 opacity-[0.025]"
-        style={{
-          backgroundImage:
-            'linear-gradient(rgba(255,255,255,.15) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.15) 1px, transparent 1px)',
-          backgroundSize: '80px 80px',
-        }}
-      />
-
-      <div className="relative z-10 max-w-5xl mx-auto px-5 sm:px-8 text-center">
-        {/* Badge */}
-        <div className="anim-reveal inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-white/10 text-white/50 text-[13px] font-medium tracking-wide mb-10">
-          <span className="w-1.5 h-1.5 rounded-full bg-copper-500 anim-pulse" />
-          Based in Maui, Hawaii
-        </div>
+      <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
+        {/* Overline */}
+        <p className="text-[13px] text-apple-secondary tracking-[0.2em] uppercase font-medium mb-8">
+          Buechler Pacific
+        </p>
 
         {/* Headline */}
-        <h1 className="anim-reveal del-1 font-serif text-5xl sm:text-6xl lg:text-[5.5rem] text-white leading-[1.05] tracking-tight mb-7">
-          Financial Intelligence
-          <br />
-          <span className="text-navy-300/80">
-            for Companies That Have
+        <h1 className="font-display font-bold tracking-tight leading-[0.9] text-apple-text">
+          <span className="block text-[clamp(3rem,11vw,8rem)]">
+            Financial
           </span>
-          <br />
-          <span className="text-navy-300/80">
-            Outgrown Excel
+          <span className="block text-[clamp(3rem,11vw,8rem)]">
+            Intelligence.
           </span>
         </h1>
 
-        {/* Subheadline */}
-        <p className="anim-reveal del-2 text-lg sm:text-xl text-navy-300/70 max-w-2xl mx-auto mb-10 leading-relaxed font-light">
-          I build data systems that finance teams actually use. Combining FP&A
-          expertise with data engineering to turn financial data into automated
-          insights — without hiring an entire BI team.
+        {/* Subtext */}
+        <p className="mt-8 text-xl sm:text-2xl text-apple-secondary max-w-xl mx-auto leading-relaxed font-light">
+          AI-powered systems that turn your data into decisions.
+          Built for adoption. Based in Maui.
         </p>
 
-        {/* CTA */}
-        <div className="anim-reveal del-3 flex flex-col sm:flex-row gap-4 justify-center mb-16">
+        {/* CTAs */}
+        <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-5">
           <a
             href="#contact"
-            onClick={(e) => scrollTo(e, '#contact')}
-            className="group inline-flex items-center justify-center gap-2.5 px-7 py-3.5 bg-copper-500 hover:bg-copper-600 text-white font-semibold rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-copper-500/20"
+            className="group inline-flex items-center gap-2 bg-apple-text text-white px-8 py-3.5 rounded-full font-semibold text-[15px] hover:bg-apple-dark-secondary transition-colors duration-300"
           >
-            Let&apos;s Talk About Your Data
-            <ArrowRight size={16} className="transition-transform group-hover:translate-x-0.5" />
+            Start a Project
+            <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform duration-300" />
           </a>
           <a
             href="#work"
-            onClick={(e) => scrollTo(e, '#work')}
-            className="inline-flex items-center justify-center gap-2 px-7 py-3.5 text-white/70 font-medium rounded-lg border border-white/10 hover:border-white/25 hover:text-white transition-all duration-300"
+            className="text-apple-blue text-[15px] font-semibold hover:underline underline-offset-4 transition-all"
           >
-            View My Work
+            View our work &rsaquo;
           </a>
         </div>
-
-        {/* Proof points */}
-        <div className="anim-reveal del-4 flex flex-col sm:flex-row items-center justify-center gap-8 sm:gap-12">
-          {stats.map((stat, i) => (
-            <div key={i} className="text-center">
-              <p className="font-serif text-2xl sm:text-3xl text-white/90">{stat.value}</p>
-              <p className="text-[13px] text-navy-400/70 mt-1 tracking-wide">{stat.label}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
-        <a
-          href="#services"
-          onClick={(e) => scrollTo(e, '#services')}
-          className="text-white/20 hover:text-white/40 transition-colors"
-          aria-label="Scroll to services"
-        >
-          <ChevronDown size={24} className="animate-bounce" />
-        </a>
       </div>
     </section>
   )

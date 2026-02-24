@@ -1,39 +1,17 @@
 @import "tailwindcss";
 
 @theme {
-  --font-serif: 'Instrument Serif', Georgia, serif;
-  --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-display: 'DM Sans', sans-serif;
+  --font-body: 'Outfit', sans-serif;
 
-  /* Deep Ocean */
-  --color-ink: #0A1628;
-  --color-navy-950: #0D1F35;
-  --color-navy-900: #122A46;
-  --color-navy-800: #1A3D60;
-  --color-navy-700: #1E5278;
-  --color-navy-600: #2A6490;
-  --color-navy-500: #3A7DB0;
-  --color-navy-400: #5A9FD0;
-  --color-navy-300: #8ABDE0;
-  --color-navy-200: #B5D6ED;
-  --color-navy-100: #D9E9F5;
-  --color-navy-50: #EDF4FA;
-
-  /* Copper Accent */
-  --color-copper-900: #6B3A1A;
-  --color-copper-800: #8B4A22;
-  --color-copper-700: #A65E30;
-  --color-copper-600: #B56A35;
-  --color-copper-500: #C87941;
-  --color-copper-400: #D4895E;
-  --color-copper-300: #E0A680;
-  --color-copper-200: #ECC5A8;
-  --color-copper-100: #F5DED0;
-  --color-copper-50: #FBF0E8;
-
-  /* Warm Stone Neutrals */
-  --color-stone-200: #E8E4DE;
-  --color-stone-100: #F5F2ED;
-  --color-stone-50: #FDFCFA;
+  /* Apple palette */
+  --color-apple-bg: #f5f5f7;
+  --color-apple-text: #1d1d1f;
+  --color-apple-secondary: #86868b;
+  --color-apple-blue: #2997ff;
+  --color-apple-dark: #1d1d1f;
+  --color-apple-dark-secondary: #424245;
+  --color-apple-card-dark: #2a2a2d;
 }
 
 html {
@@ -41,73 +19,68 @@ html {
 }
 
 body {
-  font-family: var(--font-sans);
-  color: #1E293B;
+  font-family: var(--font-body);
+  background: var(--color-apple-bg);
+  color: var(--color-apple-text);
   margin: 0;
-  background-color: var(--color-stone-50);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Film grain overlay */
-body::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 9999;
-  opacity: 0.018;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-repeat: repeat;
-  background-size: 256px 256px;
-}
-
 section[id] {
-  scroll-margin-top: 80px;
+  scroll-margin-top: 64px;
 }
 
-/* ─── Animations ──────────────────────────────── */
+/* ─── Scroll reveal ─── */
 
-@keyframes revealUp {
-  from {
-    opacity: 0;
-    transform: translateY(28px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes gentlePulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
-}
-
-.anim-reveal {
-  animation: revealUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+.reveal {
   opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.anim-fade {
-  animation: fadeIn 0.8s ease-out forwards;
-  opacity: 0;
+.reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-.anim-pulse {
-  animation: gentlePulse 3s ease-in-out infinite;
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+.reveal-delay-5 { transition-delay: 0.5s; }
+
+/* ─── Apple-style cards ─── */
+
+.card-light {
+  background: #fff;
+  border-radius: 20px;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
 }
 
-.del-1 { animation-delay: 0.08s; }
-.del-2 { animation-delay: 0.16s; }
-.del-3 { animation-delay: 0.24s; }
-.del-4 { animation-delay: 0.32s; }
-.del-5 { animation-delay: 0.40s; }
-.del-6 { animation-delay: 0.48s; }
-.del-7 { animation-delay: 0.56s; }
-.del-8 { animation-delay: 0.64s; }
+.card-light:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+}
+
+.card-dark {
+  background: #2a2a2d;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.card-dark:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* ─── Selection ─── */
+
+::selection {
+  background: rgba(41, 151, 255, 0.2);
+  color: inherit;
+}

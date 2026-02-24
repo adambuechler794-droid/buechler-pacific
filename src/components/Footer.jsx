@@ -1,45 +1,64 @@
-import { Linkedin, Github, Mail } from 'lucide-react'
+import { Github, Linkedin, Mail } from 'lucide-react'
+
+const navLinks = [
+  { label: 'Solutions', href: '#solutions' },
+  { label: 'Impact', href: '#impact' },
+  { label: 'Work', href: '#work' },
+  { label: 'About', href: '#about' },
+  { label: 'Contact', href: '#contact' },
+]
+
+const socialLinks = [
+  { icon: Mail, href: 'mailto:adam.buechler@buechlerpacific.com', label: 'Email' },
+  { icon: Linkedin, href: 'https://www.linkedin.com/in/adambuechler/', label: 'LinkedIn' },
+  { icon: Github, href: 'https://github.com/adambuechler794-droid', label: 'GitHub' },
+]
 
 export default function Footer() {
-  const year = new Date().getFullYear()
-
   return (
-    <footer className="bg-ink text-navy-400 py-16">
-      <div className="max-w-6xl mx-auto px-5 sm:px-8">
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-8">
+    <footer className="bg-apple-dark text-white/40 py-16 border-t border-white/[0.06]">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
           {/* Brand */}
-          <div className="flex flex-col items-center sm:items-start gap-1">
-            <span className="font-serif text-lg text-white tracking-tight">
-              Buechler Pacific
-            </span>
-            <span className="text-[12px] text-navy-500 tracking-wide">
-              Maui, Hawaii
-            </span>
+          <div>
+            <p className="font-display text-lg font-bold text-white">Buechler Pacific</p>
+            <p className="text-xs text-white/30 mt-1 tracking-wide">Maui, Hawaii</p>
+          </div>
+
+          {/* Nav links */}
+          <div className="flex flex-wrap gap-6">
+            {navLinks.map(link => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="text-sm text-white/30 hover:text-white/60 transition-colors duration-300"
+              >
+                {link.label}
+              </a>
+            ))}
           </div>
 
           {/* Social */}
           <div className="flex items-center gap-3">
-            {[
-              { icon: Mail, href: 'mailto:adam.buechler@buechlerpacific.com', label: 'Email' },
-              { icon: Linkedin, href: 'https://www.linkedin.com/in/adambuechler/', label: 'LinkedIn' },
-              { icon: Github, href: 'https://github.com/adambuechler794-droid', label: 'GitHub' },
-            ].map((item) => (
+            {socialLinks.map(({ icon: Icon, href, label }) => (
               <a
-                key={item.label}
-                href={item.href}
-                target={item.href.startsWith('mailto') ? undefined : '_blank'}
-                rel={item.href.startsWith('mailto') ? undefined : 'noopener noreferrer'}
-                className="w-9 h-9 rounded-lg bg-navy-900/50 hover:bg-navy-800 flex items-center justify-center transition-colors duration-300"
-                aria-label={item.label}
+                key={label}
+                href={href}
+                target={href.startsWith('mailto') ? undefined : '_blank'}
+                rel={href.startsWith('mailto') ? undefined : 'noopener noreferrer'}
+                aria-label={label}
+                className="w-9 h-9 rounded-full bg-white/[0.06] flex items-center justify-center text-white/30 hover:text-white hover:bg-white/[0.1] transition-all duration-300"
               >
-                <item.icon size={15} />
+                <Icon size={15} />
               </a>
             ))}
           </div>
         </div>
 
-        <div className="mt-10 pt-6 border-t border-navy-900/50 text-center text-[12px] text-navy-600">
-          &copy; {year} Buechler Pacific LLC. All rights reserved.
+        <div className="mt-12 pt-8 border-t border-white/[0.06]">
+          <p className="text-xs text-white/20 text-center">
+            &copy; {new Date().getFullYear()} Buechler Pacific LLC. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>

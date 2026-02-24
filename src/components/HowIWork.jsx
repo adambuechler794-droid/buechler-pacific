@@ -2,66 +2,68 @@ import { useInView } from './useInView'
 
 const steps = [
   {
-    title: 'Understand the Problem',
-    body: 'Most "data problems" are actually process problems. I start by understanding how decisions actually get made — not how the org chart says they should.',
+    number: '01',
+    title: 'Understand',
+    description:
+      'We map your data landscape, identify bottlenecks, and define what intelligence your business actually needs.',
   },
   {
-    title: 'Build for Adoption, Not Perfection',
-    body: 'A dashboard that\'s 80% accurate and gets checked daily beats a perfect model that sits unused. I work with an executive coach weekly on adoption dynamics, because this is often harder than the technical work.',
+    number: '02',
+    title: 'Build',
+    description:
+      'We engineer solutions designed for adoption — working with your team, not around them.',
   },
   {
-    title: 'Transfer Knowledge',
-    body: "I'm not trying to create dependency. You'll understand how your systems work, how to maintain them, and how to extend them when I'm gone.",
+    number: '03',
+    title: 'Transfer',
+    description:
+      "We build your team's independence. Every system comes with the knowledge to own it.",
   },
   {
-    title: 'Iterate Based on Reality',
-    body: "First version ships fast. Then we refine based on how your team actually uses it — not how they said they would.",
+    number: '04',
+    title: 'Iterate',
+    description:
+      'We ship fast and refine based on reality. No six-month rollouts that miss the mark.',
   },
 ]
 
-export default function HowIWork() {
+export default function HowItWorks() {
   const [ref, inView] = useInView()
 
   return (
-    <section id="approach" className="py-24 sm:py-32 bg-stone-100" ref={ref}>
-      <div className="max-w-6xl mx-auto px-5 sm:px-8">
-        {/* Section Header */}
-        <div className={`mb-16 ${inView ? 'anim-reveal' : 'opacity-0'}`}>
-          <p className="text-[12px] font-semibold text-copper-500 uppercase tracking-[0.2em] mb-4">
-            02 — Approach
+    <section className="relative py-28 sm:py-36 bg-apple-bg" ref={ref}>
+      <div className="max-w-7xl mx-auto px-6">
+        <div className={`reveal ${inView ? 'in-view' : ''} text-center mb-20`}>
+          <p className="text-[13px] text-apple-secondary tracking-[0.2em] uppercase mb-4 font-medium">
+            Process
           </p>
-          <h2 className="font-serif text-4xl sm:text-5xl text-navy-900 mb-5">
-            How I Work
+          <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-apple-text">
+            How we work.
           </h2>
-          <p className="text-lg text-slate-500 max-w-xl leading-relaxed">
-            Technology is only useful if people use it. My process is designed
-            to deliver systems that stick.
-          </p>
         </div>
 
-        {/* Steps */}
-        <div className="grid gap-0 sm:grid-cols-2">
-          {steps.map((step, i) => {
-            const num = String(i + 1).padStart(2, '0')
-            return (
-              <div
-                key={step.title}
-                className={`group relative p-8 sm:p-10 border-t border-stone-200/80 sm:odd:border-r ${
-                  inView ? `anim-reveal del-${i + 1}` : 'opacity-0'
-                }`}
-              >
-                <span className="font-serif text-4xl text-stone-200 group-hover:text-copper-200 transition-colors duration-500">
-                  {num}
-                </span>
-                <h3 className="text-lg font-semibold text-navy-900 mt-4 mb-3">
-                  {step.title}
-                </h3>
-                <p className="text-[14px] text-slate-500 leading-relaxed">
-                  {step.body}
-                </p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6">
+          {steps.map((step, i) => (
+            <div
+              key={step.number}
+              className={`reveal ${inView ? 'in-view' : ''} reveal-delay-${i + 1} relative`}
+            >
+              {/* Connecting line */}
+              {i < steps.length - 1 && (
+                <div className="hidden lg:block absolute top-8 left-full w-full h-px bg-gradient-to-r from-black/10 to-transparent" />
+              )}
+
+              <div className="font-display text-5xl font-extrabold text-black/[0.07] mb-4">
+                {step.number}
               </div>
-            )
-          })}
+              <h3 className="font-display text-xl font-bold text-apple-text mb-3">
+                {step.title}
+              </h3>
+              <p className="text-apple-secondary text-sm leading-relaxed">
+                {step.description}
+              </p>
+            </div>
+          ))}
         </div>
       </div>
     </section>

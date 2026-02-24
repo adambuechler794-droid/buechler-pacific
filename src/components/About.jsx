@@ -1,108 +1,70 @@
 import { Linkedin } from 'lucide-react'
 import { useInView } from './useInView'
 
-const experience = [
-  { role: 'Director of FP&A', org: 'Alpha Inc.', detail: 'Construction & operations, Hawaii' },
-  { role: 'Finance & Analytics', org: 'End Group, Cutwater Spirits', detail: 'CPG and consumer brands' },
-  { role: 'Economics', org: 'UC Santa Barbara', detail: '' },
-]
-
-const interests = [
-  'Maui Chamber of Commerce member',
-  'Surfrider Foundation supporter',
-  'Former Trilogy sailing crew',
-  'Building surf forecast apps for fun',
-]
-
 export default function About() {
   const [ref, inView] = useInView()
 
   return (
-    <section id="about" className="py-24 sm:py-32 bg-stone-100" ref={ref}>
-      <div className="max-w-6xl mx-auto px-5 sm:px-8">
-        {/* Section Header */}
-        <div className={`mb-16 ${inView ? 'anim-reveal' : 'opacity-0'}`}>
-          <p className="text-[12px] font-semibold text-copper-500 uppercase tracking-[0.2em] mb-4">
-            04 — About
-          </p>
-          <h2 className="font-serif text-4xl sm:text-5xl text-navy-900">
-            The Person Behind the Systems
-          </h2>
-        </div>
+    <section id="about" className="relative py-28 sm:py-36 bg-white" ref={ref}>
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+          {/* Photo placeholder */}
+          <div className={`reveal ${inView ? 'in-view' : ''}`}>
+            <div className="aspect-[4/5] rounded-3xl bg-gradient-to-br from-apple-bg to-[#e8e8ed] flex items-end p-8 overflow-hidden relative">
+              <div className="relative z-10">
+                <p className="text-apple-secondary text-sm tracking-[0.2em] uppercase">Portrait</p>
+              </div>
+            </div>
+          </div>
 
-        <div className={`grid gap-12 lg:grid-cols-5 ${inView ? 'anim-reveal del-2' : 'opacity-0'}`}>
-          {/* Left — Pull quote + CTA */}
-          <div className="lg:col-span-2 space-y-8">
-            <blockquote className="font-serif text-2xl sm:text-3xl text-navy-800 leading-snug">
-              "Someone had to actually fix the problem.
-              <span className="text-copper-500"> Turns out, having both the finance context and the technical skills is a pretty rare combination.</span>"
-            </blockquote>
+          {/* Bio */}
+          <div className={`reveal ${inView ? 'in-view' : ''} reveal-delay-2`}>
+            <p className="text-[13px] text-apple-secondary tracking-[0.2em] uppercase mb-4 font-medium">
+              About
+            </p>
+            <h2 className="font-display text-4xl sm:text-5xl font-bold tracking-tight text-apple-text mb-8">
+              Adam Buechler
+            </h2>
+
+            <div className="space-y-4 text-apple-secondary leading-relaxed">
+              <p>
+                I sit at the intersection of finance and engineering — a background
+                in FP&A combined with self-taught data engineering and AI development.
+                I build the systems that finance teams actually use.
+              </p>
+              <p>
+                Previously Director of FP&A at Alpha Inc., where I led financial
+                planning across multi-island construction operations in Hawaii.
+                Before that, finance and analytics roles at End Group and Cutwater
+                Spirits in consumer goods.
+              </p>
+              <p>
+                Economics from UC Santa Barbara. Based in Maui, where I&apos;m a
+                member of the Maui Chamber of Commerce and the Surfrider Foundation.
+              </p>
+            </div>
+
+            {/* Credential tags */}
+            <div className="mt-8 flex flex-wrap gap-2">
+              {['Director of FP&A', 'Microsoft Fabric', 'AI Engineering', 'Maui, Hawaii'].map(tag => (
+                <span
+                  key={tag}
+                  className="px-4 py-2 text-sm text-apple-secondary bg-apple-bg rounded-full"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
 
             <a
               href="https://www.linkedin.com/in/adambuechler/"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2.5 px-5 py-2.5 bg-navy-900 hover:bg-navy-800 text-white text-[13px] font-semibold rounded-lg transition-colors"
+              className="mt-8 inline-flex items-center gap-2.5 text-apple-blue hover:underline underline-offset-4 transition-all"
             >
-              <Linkedin size={15} />
-              Connect on LinkedIn
+              <Linkedin size={18} />
+              <span className="text-sm font-semibold">Connect on LinkedIn</span>
             </a>
-          </div>
-
-          {/* Right — Bio */}
-          <div className="lg:col-span-3 space-y-8">
-            <div className="space-y-4 text-[15px] text-slate-500 leading-relaxed">
-              <p>
-                I'm Adam Buechler. I started in traditional finance — FP&A, forecasting,
-                variance analysis, board reporting. But I kept running into the same problem:
-                the data systems we were supposed to rely on were either broken, manual, or nonexistent.
-              </p>
-              <p>
-                So I learned to build them myself. SQL, Python, Power BI, Microsoft Fabric,
-                automation tools. Not because I wanted to become a developer, but because
-                someone had to fix the problem.
-              </p>
-              <p>
-                I'm not building a big consulting firm. I work with a small number of clients
-                at a time and go deep. You get me — not a junior analyst learning on your project.
-              </p>
-            </div>
-
-            {/* Experience */}
-            <div>
-              <h3 className="text-[12px] font-semibold text-copper-500 uppercase tracking-[0.2em] mb-4">
-                Background
-              </h3>
-              <div className="space-y-3">
-                {experience.map((exp) => (
-                  <div key={exp.role} className="flex items-baseline gap-3">
-                    <span className="w-1 h-1 rounded-full bg-navy-300 shrink-0 mt-2" />
-                    <div>
-                      <span className="text-[14px] font-semibold text-navy-900">{exp.role}</span>
-                      <span className="text-[14px] text-slate-400"> — {exp.org}</span>
-                      {exp.detail && <span className="text-[13px] text-slate-400">, {exp.detail}</span>}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Interests */}
-            <div>
-              <h3 className="text-[12px] font-semibold text-copper-500 uppercase tracking-[0.2em] mb-4">
-                Beyond the Resume
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {interests.map((item) => (
-                  <span
-                    key={item}
-                    className="px-3 py-1.5 bg-white border border-stone-200/80 text-slate-500 text-[13px] rounded-lg"
-                  >
-                    {item}
-                  </span>
-                ))}
-              </div>
-            </div>
           </div>
         </div>
       </div>

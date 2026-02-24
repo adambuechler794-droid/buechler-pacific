@@ -1,140 +1,93 @@
-import {
-  BarChart3,
-  LineChart,
-  Database,
-  Bot,
-} from 'lucide-react'
+import { Cpu, BarChart3, Brain, Database } from 'lucide-react'
 import { useInView } from './useInView'
 
 const services = [
   {
-    icon: BarChart3,
-    title: 'Financial Planning & Analysis',
+    icon: Cpu,
+    title: 'AI & Custom Applications',
+    description:
+      'Custom GPT tools, automated reporting workflows, interactive dashboards, and intelligent data applications that transform how your team works.',
+    features: ['Custom GPT Tools', 'Automated Workflows', 'n8n & Make Integration', 'Intelligent Data Apps'],
     featured: true,
-    items: [
-      'Multi-scenario planning and modeling',
-      'Cash flow forecasting systems',
-      'Budget-to-actual tracking and variance analysis',
-      'Board-ready financial reporting',
-      'KPI dashboards that executives actually check',
-    ],
   },
   {
-    icon: LineChart,
-    title: 'Power BI & Data Analytics',
-    items: [
-      'Custom dashboards built for your business',
-      'DAX modeling for complex calculations',
-      'Integration with existing systems (ERP, accounting, spreadsheets)',
-      'Self-service analytics that reduce analyst workload',
-      'Mobile-first reporting for field teams',
-    ],
+    icon: BarChart3,
+    title: 'Financial Planning & Analysis',
+    description:
+      'Multi-scenario planning, cash flow forecasting, budget-to-actual tracking, and executive dashboards that leadership actually checks.',
+    features: ['Scenario Planning', 'Cash Flow Models', 'KPI Dashboards', 'Board Reporting'],
+  },
+  {
+    icon: Brain,
+    title: 'Power BI & Analytics',
+    description:
+      'Custom dashboards, DAX modeling, system integration, and self-service analytics that your team actually uses.',
+    features: ['Custom Dashboards', 'DAX Modeling', 'Self-Service Analytics', 'Mobile Reporting'],
   },
   {
     icon: Database,
-    title: 'Data Architecture & Engineering',
-    items: [
-      'Microsoft Fabric implementation',
-      'SQL database design and optimization',
-      'Automated data pipelines (no more manual exports)',
-      'Data quality frameworks and governance',
-      'Legacy system integration and migration',
-    ],
-  },
-  {
-    icon: Bot,
-    title: 'AI & Custom Applications',
-    items: [
-      'Custom GPT-powered analysis tools',
-      'Automated reporting with natural language summaries',
-      'Web tools and internal dashboards tailored to your process',
-      'AI agent workflows (n8n, Make, etc.)',
-      'Data collection and validation apps',
-    ],
+    title: 'Data Architecture',
+    description:
+      'Microsoft Fabric, SQL optimization, ETL pipelines, data governance, and legacy system integration.',
+    features: ['Microsoft Fabric', 'SQL Optimization', 'Data Pipelines', 'Governance'],
   },
 ]
-
-function ServiceCard({ service, index }) {
-  const Icon = service.icon
-  const num = String(index + 1).padStart(2, '0')
-
-  return (
-    <div className={`group relative p-7 sm:p-8 rounded-2xl transition-all duration-500 hover:-translate-y-0.5 ${
-      service.featured
-        ? 'bg-navy-900 text-white'
-        : 'bg-white border border-stone-200/80 hover:border-navy-200 hover:shadow-lg hover:shadow-navy-900/5'
-    }`}>
-      <div className="flex items-start justify-between mb-6">
-        <div className={`w-11 h-11 rounded-xl flex items-center justify-center transition-colors ${
-          service.featured
-            ? 'bg-white/10 text-copper-400'
-            : 'bg-navy-50 text-navy-700 group-hover:bg-navy-100'
-        }`}>
-          <Icon size={22} />
-        </div>
-        <div className="flex items-center gap-3">
-          {service.featured && (
-            <span className="px-2.5 py-0.5 bg-copper-500/20 text-copper-300 text-[10px] font-semibold uppercase tracking-[0.15em] rounded-full">
-              Core
-            </span>
-          )}
-          <span className={`font-serif text-3xl leading-none ${
-            service.featured ? 'text-white/10' : 'text-stone-200'
-          }`}>{num}</span>
-        </div>
-      </div>
-
-      <h3 className={`text-lg font-semibold mb-4 ${
-        service.featured ? 'text-white' : 'text-navy-900'
-      }`}>{service.title}</h3>
-
-      <ul className="space-y-2.5">
-        {service.items.map((item, i) => (
-          <li key={i} className={`flex items-start gap-2.5 text-[14px] leading-relaxed ${
-            service.featured ? 'text-navy-200/80' : 'text-slate-500'
-          }`}>
-            <span className={`mt-2 w-1 h-1 rounded-full shrink-0 ${
-              service.featured ? 'bg-copper-400' : 'bg-copper-500'
-            }`} />
-            {item}
-          </li>
-        ))}
-      </ul>
-
-    </div>
-  )
-}
 
 export default function Services() {
   const [ref, inView] = useInView()
 
   return (
-    <section id="services" className="py-24 sm:py-32 bg-stone-100" ref={ref}>
-      <div className="max-w-6xl mx-auto px-5 sm:px-8">
-        {/* Section Header */}
-        <div className={`mb-16 ${inView ? 'anim-reveal' : 'opacity-0'}`}>
-          <p className="text-[12px] font-semibold text-copper-500 uppercase tracking-[0.2em] mb-4">
-            01 — Services
+    <section id="solutions" className="relative py-28 sm:py-36 bg-white" ref={ref}>
+      <div className="max-w-7xl mx-auto px-6">
+        {/* Header */}
+        <div className={`reveal ${inView ? 'in-view' : ''} max-w-2xl mb-16`}>
+          <p className="text-[13px] text-apple-secondary tracking-[0.2em] uppercase mb-4 font-medium">
+            Solutions
           </p>
-          <h2 className="font-serif text-4xl sm:text-5xl text-navy-900 mb-5">
-            What I Build
+          <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-apple-text">
+            What we build.
           </h2>
-          <p className="text-lg text-slate-500 max-w-xl leading-relaxed">
-            From financial modeling to production data systems. Everything you need
-            to turn raw data into decisions.
+          <p className="mt-5 text-lg text-apple-secondary leading-relaxed">
+            End-to-end financial intelligence systems — from data infrastructure
+            to the AI layer that makes it useful.
           </p>
         </div>
 
-        {/* Cards Grid — 2x2 */}
-        <div className="grid gap-5 sm:grid-cols-2">
-          {services.map((service, i) => (
-            <div
-              key={service.title}
-              className={inView ? `anim-reveal del-${i + 1}` : 'opacity-0'}
-            >
-              <ServiceCard service={service} index={i} />
-            </div>
-          ))}
+        {/* Card grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          {services.map((service, i) => {
+            const Icon = service.icon
+            return (
+              <div
+                key={service.title}
+                className={`reveal ${inView ? 'in-view' : ''} reveal-delay-${i + 1} card-light p-8 sm:p-10 ${
+                  service.featured ? 'md:col-span-2' : ''
+                }`}
+              >
+                <div className="w-12 h-12 rounded-2xl bg-apple-bg flex items-center justify-center mb-6">
+                  <Icon size={22} className="text-apple-text" />
+                </div>
+
+                <h3 className="font-display text-2xl sm:text-3xl font-bold text-apple-text mb-3">
+                  {service.title}
+                </h3>
+                <p className="text-apple-secondary text-[15px] leading-relaxed mb-6 max-w-xl">
+                  {service.description}
+                </p>
+
+                <div className="flex flex-wrap gap-2">
+                  {service.features.map(feature => (
+                    <span
+                      key={feature}
+                      className="px-3 py-1.5 text-xs text-apple-secondary bg-apple-bg rounded-full"
+                    >
+                      {feature}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )
+          })}
         </div>
       </div>
     </section>

@@ -2,39 +2,39 @@ import { useInView } from './useInView'
 
 const projects = [
   {
-    category: 'Data Analytics',
-    title: 'Multi-Island Construction Project Analytics',
+    category: 'AI / Product',
+    title: 'SwellScore — Real-Time Surf Forecast System',
     description:
-      'Integrated NetSuite and HCSS data across island operations, enabling real-time project cost tracking and variance analysis.',
-    result: '$200K+ in cost overruns identified',
+      'Full-stack web application integrating NOAA buoy data, PacIOOS ERDDAP wave models, and weather APIs to deliver real-time surf forecasts for Maui. Built end-to-end: React + TypeScript frontend, Flask API backend, multi-source data pipeline, live in production.',
+    result: 'Full-stack product — live in production',
   },
   {
-    category: 'Data Architecture',
-    title: 'Enterprise Data Architecture on Microsoft Fabric',
-    description:
-      'Designed and implemented a unified data platform consolidating multiple source systems into a single analytical layer.',
-    result: 'Reporting reduced from 2 weeks to 2 days',
-  },
-  {
-    category: 'Change Management',
-    title: 'Excel-to-Fabric Workflow Transition',
-    description:
-      'Built bridge tools that met finance teams in Excel while pulling from Fabric — achieving adoption without disruption.',
-    result: '95% adoption in month one',
-  },
-  {
-    category: 'AI',
+    category: 'AI / LLM',
     title: 'AI-Powered Forecast Analysis Assistant',
     description:
-      'Built a custom GPT that lets the CFO query budget scenarios, compare actuals, and generate board-ready commentary in seconds.',
-    result: 'Hours of analysis reduced to seconds',
+      'Custom GPT trained on the company\u2019s forecast models, enabling natural language queries about budget vs. forecast, version comparisons, and variance drivers. Business leaders ask questions in plain English and get context-aware financial analysis in seconds.',
+    result: 'Hours of analyst work reduced to seconds',
   },
   {
-    category: 'Product',
-    title: 'Maui Surf Forecast System',
+    category: 'AI / Automation',
+    title: 'Cash Flow Statement Automation',
     description:
-      'Consumer web application integrating NOAA buoy data and weather APIs to deliver actionable surf forecasts for Maui breaks.',
-    result: 'Personal project — live in production',
+      'Automated the most dreaded deliverable in finance. Built a Power Pivot pulling directly from the Fabric semantic model, replacing a process that required three senior finance people working a full day. Monthly verification keeps a human in the loop.',
+    result: 'Three people, full day \u2192 one person, under an hour',
+  },
+  {
+    category: 'Data Intelligence',
+    title: 'Multi-Island Construction Project Analytics',
+    description:
+      'Integrated NetSuite financials with HCSS project budgets into real-time Power BI dashboards. The company president used the dashboard once and scheduled training for all project managers himself. PMs now use it daily to track project health and catch issues before they compound.',
+    result: 'President became internal champion \u2014 PMs use it daily',
+  },
+  {
+    category: 'Data / AI Infrastructure',
+    title: 'AI-Ready Enterprise Data Platform',
+    description:
+      'Designed and built a Microsoft Fabric data lakehouse from scratch \u2014 no IT department, no existing infrastructure. Automated pipelines pull from NetSuite, HCSS, and other sources into a unified analytical layer. This is the foundation that makes every AI tool, dashboard, and automation possible.',
+    result: 'Ad-hoc analysis: days \u2192 minutes',
   },
 ]
 

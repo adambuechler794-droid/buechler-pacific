@@ -37,25 +37,23 @@ function AnimatedCounter({ target, suffix = '', prefix = '', active }) {
 
 const stats = [
   {
+    type: 'text',
+    display: '5+ Days',
+    label: 'Recovered monthly',
+    description: 'Monthly close accelerated from the 20th to the 15th',
+  },
+  {
     type: 'counter',
-    value: 200,
-    prefix: '$',
-    suffix: 'K+',
-    label: 'Cost overruns identified',
-    description: 'Through integrated multi-system data analytics',
+    value: 90,
+    suffix: '%',
+    label: 'Automated',
+    description: 'Cash flow statement: three people, full day \u2192 one person, under an hour',
   },
   {
     type: 'text',
-    display: '2 Days',
-    label: 'Reporting cycle',
-    description: 'Reduced from two weeks with automated pipelines',
-  },
-  {
-    type: 'counter',
-    value: 95,
-    suffix: '%',
-    label: 'Adoption in month one',
-    description: 'By meeting users where they already work',
+    display: '10x',
+    label: 'Faster analysis',
+    description: 'Complex queries done in minutes that used to take days',
   },
 ]
 

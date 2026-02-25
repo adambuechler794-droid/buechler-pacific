@@ -15,17 +15,17 @@ export default function Hero() {
         {/* Headline */}
         <h1 className="font-display font-bold tracking-tight leading-[0.9] text-apple-text">
           <span className="block text-[clamp(3rem,11vw,8rem)]">
-            Financial
+            AI Systems
           </span>
           <span className="block text-[clamp(3rem,11vw,8rem)]">
-            Intelligence.
+            for Finance.
           </span>
         </h1>
 
         {/* Subtext */}
         <p className="mt-8 text-xl sm:text-2xl text-apple-secondary max-w-xl mx-auto leading-relaxed font-light">
-          AI-powered systems that turn your data into decisions.
-          Built for adoption. Based in Maui.
+          We engineer AI-powered systems that turn your data into decisions.
+          From infrastructure to intelligence. Based in Maui.
         </p>
 
         {/* CTAs */}

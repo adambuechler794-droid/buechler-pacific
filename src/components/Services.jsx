@@ -4,32 +4,32 @@ import { useInView } from './useInView'
 const services = [
   {
     icon: Cpu,
-    title: 'AI & Custom Applications',
+    title: 'AI & Intelligent Automation',
     description:
-      'Custom GPT tools, automated reporting workflows, interactive dashboards, and intelligent data applications that transform how your team works.',
-    features: ['Custom GPT Tools', 'Automated Workflows', 'n8n & Make Integration', 'Intelligent Data Apps'],
+      'Custom GPTs, LLM-powered analysis tools, automated reporting pipelines, and full-stack AI applications. We build the systems that let your team query data in plain English and automate the work that used to take days.',
+    features: ['Custom GPT Tools', 'LLM Integration', 'Automated Pipelines', 'Full-Stack AI Apps'],
     featured: true,
   },
   {
     icon: BarChart3,
     title: 'Financial Planning & Analysis',
     description:
-      'Multi-scenario planning, cash flow forecasting, budget-to-actual tracking, and executive dashboards that leadership actually checks.',
-    features: ['Scenario Planning', 'Cash Flow Models', 'KPI Dashboards', 'Board Reporting'],
+      'Multi-scenario planning, cash flow automation, budget-to-actual tracking, and executive dashboards that replace monthly PowerPoint assembly with live intelligence.',
+    features: ['Scenario Planning', 'Cash Flow Automation', 'KPI Dashboards', 'Board Reporting'],
   },
   {
     icon: Brain,
     title: 'Power BI & Analytics',
     description:
-      'Custom dashboards, DAX modeling, system integration, and self-service analytics that your team actually uses.',
-    features: ['Custom Dashboards', 'DAX Modeling', 'Self-Service Analytics', 'Mobile Reporting'],
+      'Custom dashboards, DAX modeling, system integration, and self-service analytics built for adoption — designed so your team actually uses them daily.',
+    features: ['Custom Dashboards', 'DAX Modeling', 'Self-Service Analytics', 'Adoption Strategy'],
   },
   {
     icon: Database,
     title: 'Data Architecture',
     description:
-      'Microsoft Fabric, SQL optimization, ETL pipelines, data governance, and legacy system integration.',
-    features: ['Microsoft Fabric', 'SQL Optimization', 'Data Pipelines', 'Governance'],
+      'Microsoft Fabric, SQL optimization, ETL pipelines, and the AI-ready data foundation that makes everything else possible.',
+    features: ['Microsoft Fabric', 'SQL Optimization', 'Data Pipelines', 'AI-Ready Infrastructure'],
   },
 ]
 
@@ -48,8 +48,8 @@ export default function Services() {
             What we build.
           </h2>
           <p className="mt-5 text-lg text-apple-secondary leading-relaxed">
-            End-to-end financial intelligence systems — from data infrastructure
-            to the AI layer that makes it useful.
+            End-to-end AI and data systems for finance — from the infrastructure
+            layer to the intelligence that makes it useful.
           </p>
         </div>
 

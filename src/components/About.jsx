@@ -28,15 +28,16 @@ export default function About() {
 
             <div className="space-y-4 text-apple-secondary leading-relaxed">
               <p>
-                I sit at the intersection of finance and engineering — a background
-                in FP&A combined with self-taught data engineering and AI development.
-                I build the systems that finance teams actually use.
+                I sit at the intersection of finance and AI engineering — a background
+                in FP&A combined with hands-on AI development, data engineering, and
+                full-stack product builds. I build the intelligent systems that
+                finance teams actually use.
               </p>
               <p>
-                Previously Director of FP&A at Alpha Inc., where I led financial
-                planning across multi-island construction operations in Hawaii.
-                Before that, finance and analytics roles at End Group and Cutwater
-                Spirits in consumer goods.
+                Previously Director of FP&A at Alpha Inc., where I built the company&apos;s
+                entire data platform from scratch and led financial planning across
+                multi-island construction operations in Hawaii. Before that, finance
+                and analytics roles at End Group and Cutwater Spirits in consumer goods.
               </p>
               <p>
                 Economics from UC Santa Barbara. Based in Maui, where I&apos;m a
@@ -46,7 +47,7 @@ export default function About() {
 
             {/* Credential tags */}
             <div className="mt-8 flex flex-wrap gap-2">
-              {['Director of FP&A', 'Microsoft Fabric', 'AI Engineering', 'Maui, Hawaii'].map(tag => (
+              {['AI Engineering', 'Director of FP&A', 'Microsoft Fabric', 'Full-Stack Development', 'Maui, Hawaii'].map(tag => (
                 <span
                   key={tag}
                   className="px-4 py-2 text-sm text-apple-secondary bg-apple-bg rounded-full"

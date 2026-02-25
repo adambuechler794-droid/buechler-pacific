@@ -8,12 +8,14 @@ export default function About() {
     <section id="about" className="relative py-28 sm:py-36 bg-white" ref={ref}>
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-          {/* Photo placeholder */}
+          {/* Photo */}
           <div className={`reveal ${inView ? 'in-view' : ''}`}>
-            <div className="aspect-[4/5] rounded-3xl bg-gradient-to-br from-apple-bg to-[#e8e8ed] flex items-end p-8 overflow-hidden relative">
-              <div className="relative z-10">
-                <p className="text-apple-secondary text-sm tracking-[0.2em] uppercase">Portrait</p>
-              </div>
+            <div className="aspect-[4/5] rounded-3xl overflow-hidden">
+              <img
+                src="/headshot.jpg"
+                alt="Adam Buechler"
+                className="w-full h-full object-cover object-top"
+              />
             </div>
           </div>
 

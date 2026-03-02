@@ -36,6 +36,13 @@ const projects = [
       'Designed and built a Microsoft Fabric data lakehouse from scratch \u2014 no IT department, no existing infrastructure. Automated pipelines pull from NetSuite, HCSS, and other sources into a unified analytical layer. This is the foundation that makes every AI tool, dashboard, and automation possible.',
     result: 'Ad-hoc analysis: days \u2192 minutes',
   },
+  {
+    category: 'n8n / Automation',
+    title: 'SwellScore \u2014 AI Social Media Manager',
+    description:
+      'Built an end-to-end Instagram automation pipeline for SwellScore using n8n. Claude pulls live surf conditions and images from the SwellScore backend to generate ready-to-post content. A Discord bot delivers each post for one-click approval before auto-publishing \u2014 and a second pipeline recommends relevant accounts to engage with, surfacing suggested comments and likes.',
+    result: 'Automated content pipeline \u2014 backend to Instagram feed',
+  },
 ]
 
 export default function Projects() {

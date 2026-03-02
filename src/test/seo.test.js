@@ -44,4 +44,25 @@ describe('SEO meta tags in index.html', () => {
   it('has lang="en" on html tag', () => {
     expect(html).toMatch(/<html lang="en">/)
   })
+
+  it('has canonical link', () => {
+    expect(html).toMatch(/rel="canonical"/)
+    expect(html).toMatch(/href="https:\/\/buechlerpacific\.com\/"/)
+  })
+
+  it('has Open Graph image', () => {
+    expect(html).toMatch(/property="og:image"/)
+    expect(html).toMatch(/og-image/)
+  })
+
+  it('has Twitter large image card', () => {
+    expect(html).toMatch(/name="twitter:card".*content="summary_large_image"/)
+    expect(html).toMatch(/name="twitter:image"/)
+  })
+
+  it('has JSON-LD structured data', () => {
+    expect(html).toMatch(/application\/ld\+json/)
+    expect(html).toMatch(/schema\.org/)
+    expect(html).toMatch(/ProfessionalService/)
+  })
 })

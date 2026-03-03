@@ -69,4 +69,13 @@ describe('SEO meta tags in index.html', () => {
   it('has Open Graph image alt text', () => {
     expect(html).toMatch(/property="og:image:alt"\s+content="Buechler Pacific — AI Systems for Finance"/)
   })
+
+  it('has telephone in structured data', () => {
+    expect(html).toMatch(/\+18585253076/)
+  })
+
+  it('has PostalAddress in structured data', () => {
+    expect(html).toMatch(/PostalAddress/)
+    expect(html).toMatch(/Uwapo/)
+  })
 })

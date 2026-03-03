@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
 import { Menu, X } from 'lucide-react'
 
 const links = [
@@ -11,6 +12,11 @@ const links = [
 export default function Navigation() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+  const location = useLocation()
+  const isHome = location.pathname === '/'
+
+  // Prefix anchor links with '/' when not on the home page
+  const href = (anchor) => isHome ? anchor : `/${anchor}`
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50)
@@ -34,8 +40,7 @@ export default function Navigation() {
       >
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           <a
-            href="#"
-            onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); setMenuOpen(false) }}
+            href="/"
             className="font-display text-lg font-bold tracking-tight text-apple-text"
           >
             Buechler Pacific
@@ -46,14 +51,14 @@ export default function Navigation() {
             {links.map(link => (
               <a
                 key={link.href}
-                href={link.href}
+                href={href(link.href)}
                 className="text-[13px] text-apple-secondary hover:text-apple-text transition-colors duration-300"
               >
                 {link.label}
               </a>
             ))}
             <a
-              href="#contact"
+              href={href('#contact')}
               className="text-[13px] bg-apple-text text-white px-5 py-2 rounded-full font-medium hover:bg-apple-dark-secondary transition-colors duration-300"
             >
               Start a Project
@@ -80,7 +85,7 @@ export default function Navigation() {
         {links.map(link => (
           <a
             key={link.href}
-            href={link.href}
+            href={href(link.href)}
             onClick={() => { document.body.style.overflow = ''; setMenuOpen(false) }}
             className="font-display text-3xl font-bold text-apple-text/70 hover:text-apple-text transition-colors"
           >
@@ -88,7 +93,7 @@ export default function Navigation() {
           </a>
         ))}
         <a
-          href="#contact"
+          href={href('#contact')}
           onClick={() => { document.body.style.overflow = ''; setMenuOpen(false) }}
           className="mt-4 text-lg bg-apple-text text-white px-8 py-3 rounded-full font-medium"
         >

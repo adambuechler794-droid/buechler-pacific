@@ -1,4 +1,5 @@
 import { render, screen, fireEvent, waitFor, act } from '@testing-library/react'
+import { MemoryRouter } from 'react-router-dom'
 import userEvent from '@testing-library/user-event'
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 import Navigation from '../Navigation'
@@ -30,7 +31,7 @@ afterEach(() => {
 
 describe('Navigation', () => {
   it('applies scrolled styles when page is scrolled past threshold', async () => {
-    render(<Navigation />)
+    render(<MemoryRouter><Navigation /></MemoryRouter>)
 
     Object.defineProperty(window, 'scrollY', {
       value: 120,
@@ -46,7 +47,7 @@ describe('Navigation', () => {
 
   it('opens and closes the mobile menu via buttons', async () => {
     const user = userEvent.setup()
-    render(<Navigation />)
+    render(<MemoryRouter><Navigation /></MemoryRouter>)
 
     await user.click(screen.getByRole('button', { name: /open menu/i }))
     const closeButtons = screen.getAllByRole('button', { name: /close menu/i })
@@ -57,7 +58,7 @@ describe('Navigation', () => {
   })
 
   it('closes the mobile menu when a nav link is clicked', async () => {
-    const { container } = render(<Navigation />)
+    const { container } = render(<MemoryRouter><Navigation /></MemoryRouter>)
 
     // Open menu
     fireEvent.click(screen.getByRole('button', { name: /open menu/i }))
@@ -78,19 +79,15 @@ describe('Navigation', () => {
     })
   })
 
-  it('scrolls to top when the logo is clicked', async () => {
-    const user = userEvent.setup()
-    render(<Navigation />)
-
-    const logo = screen.getByText('Buechler Pacific')
-    await user.click(logo.closest('a'))
-
-    expect(window.scrollTo).toHaveBeenCalledWith({ top: 0, behavior: 'smooth' })
+  it('logo links to the home page', () => {
+    render(<MemoryRouter><Navigation /></MemoryRouter>)
+    const logo = screen.getByText('Buechler Pacific').closest('a')
+    expect(logo).toHaveAttribute('href', '/')
   })
 
   it('locks body scroll when the mobile menu is open', async () => {
     const user = userEvent.setup()
-    render(<Navigation />)
+    render(<MemoryRouter><Navigation /></MemoryRouter>)
 
     await user.click(screen.getByRole('button', { name: /open menu/i }))
     expect(document.body.style.overflow).toBe('hidden')
@@ -100,13 +97,33 @@ describe('Navigation', () => {
     expect(document.body.style.overflow).toBe('')
   })
 
-  it('renders all nav links with correct hrefs', () => {
-    render(<Navigation />)
+  it('renders anchor links as bare fragments on the home route', () => {
+    render(<MemoryRouter initialEntries={['/']}><Navigation /></MemoryRouter>)
     const expectedLinks = [
       { text: 'Solutions', href: '#solutions' },
       { text: 'Impact', href: '#impact' },
       { text: 'Work', href: '#work' },
       { text: 'About', href: '#about' },
+    ]
+
+    expectedLinks.forEach(({ text, href }) => {
+      const links = screen.getAllByText(text)
+      const link = links.find((el) => el.closest('a'))
+      expect(link.closest('a')).toHaveAttribute('href', href)
+    })
+  })
+
+  it('prefixes anchor links with / on non-home routes', () => {
+    render(
+      <MemoryRouter initialEntries={['/case-studies/swellscore']}>
+        <Navigation />
+      </MemoryRouter>
+    )
+    const expectedLinks = [
+      { text: 'Solutions', href: '/#solutions' },
+      { text: 'Impact', href: '/#impact' },
+      { text: 'Work', href: '/#work' },
+      { text: 'About', href: '/#about' },
     ]
 
     expectedLinks.forEach(({ text, href }) => {

@@ -22,7 +22,7 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <p className="font-display text-lg font-bold text-white">Buechler Pacific</p>
-            <p className="text-xs text-white/30 mt-1 tracking-wide">Maui, Hawaii</p>
+            <p className="text-xs text-white/60 mt-1 tracking-wide">Maui, Hawaii</p>
           </div>
 
           {/* Nav links */}
@@ -31,7 +31,7 @@ export default function Footer() {
               <a
                 key={link.href}
                 href={link.href}
-                className="text-sm text-white/30 hover:text-white/60 transition-colors duration-300"
+                className="text-sm text-white/60 hover:text-white/60 transition-colors duration-300"
               >
                 {link.label}
               </a>
@@ -47,7 +47,7 @@ export default function Footer() {
                 target={href.startsWith('mailto') ? undefined : '_blank'}
                 rel={href.startsWith('mailto') ? undefined : 'noopener noreferrer'}
                 aria-label={label}
-                className="w-9 h-9 rounded-full bg-white/[0.06] flex items-center justify-center text-white/30 hover:text-white hover:bg-white/[0.1] transition-all duration-300"
+                className="w-9 h-9 rounded-full bg-white/[0.06] flex items-center justify-center text-white/60 hover:text-white hover:bg-white/[0.1] transition-all duration-300"
               >
                 <Icon size={15} />
               </a>
@@ -56,7 +56,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-12 pt-8 border-t border-white/[0.06]">
-          <p className="text-xs text-white/20 text-center">
+          <p className="text-xs text-white/50 text-center">
             &copy; {new Date().getFullYear()} Buechler Pacific LLC. All rights reserved.
           </p>
         </div>

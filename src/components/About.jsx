@@ -15,6 +15,7 @@ export default function About() {
                 src="/headshot.jpg"
                 alt="Adam Buechler"
                 className="w-full h-full object-cover object-top"
+                loading="lazy"
               />
             </div>
           </div>

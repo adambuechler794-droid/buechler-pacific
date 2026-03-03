@@ -78,4 +78,9 @@ describe('SEO meta tags in index.html', () => {
     expect(html).toMatch(/PostalAddress/)
     expect(html).toMatch(/Uwapo/)
   })
+
+  it('has image and priceRange in structured data', () => {
+    expect(html).toMatch(/"image":\s*"https:\/\/buechlerpacific\.com\/og-image\.svg"/)
+    expect(html).toMatch(/"priceRange":\s*"\$\$\$\$"/)
+  })
 })

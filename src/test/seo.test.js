@@ -3,6 +3,7 @@ import { resolve } from 'path'
 import { describe, it, expect } from 'vitest'
 
 const html = readFileSync(resolve('index.html'), 'utf-8')
+const sitemap = readFileSync(resolve('public/sitemap.xml'), 'utf-8')
 
 describe('SEO meta tags in index.html', () => {
   it('has a descriptive title', () => {
@@ -82,5 +83,18 @@ describe('SEO meta tags in index.html', () => {
   it('has image and priceRange in structured data', () => {
     expect(html).toMatch(/"image":\s*"https:\/\/buechlerpacific\.com\/og-image\.svg"/)
     expect(html).toMatch(/"priceRange":\s*"\$\$\$\$"/)
+  })
+
+  it('sitemap includes all case study URLs', () => {
+    const slugs = [
+      'swellscore',
+      'ai-forecast-assistant',
+      'cash-flow-automation',
+      'construction-analytics',
+      'enterprise-data-platform',
+    ]
+    slugs.forEach(slug => {
+      expect(sitemap).toMatch(new RegExp(`/case-studies/${slug}`))
+    })
   })
 })

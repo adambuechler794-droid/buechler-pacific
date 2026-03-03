@@ -65,4 +65,9 @@ describe('SEO meta tags in index.html', () => {
     expect(html).toMatch(/schema\.org/)
     expect(html).toMatch(/ProfessionalService/)
   })
+
+  it('has Open Graph image alt text', () => {
+    expect(html).toMatch(/property="og:image:alt"/)
+    expect(html).toMatch(/content="Buechler Pacific/)
+  })
 })

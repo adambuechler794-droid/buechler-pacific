@@ -1,49 +1,6 @@
+import { Link } from 'react-router-dom'
 import { useInView } from './useInView'
-
-const projects = [
-  {
-    category: 'AI / Product',
-    title: 'SwellScore — Real-Time Surf Forecast System',
-    description:
-      'Full-stack web application integrating NOAA buoy data, PacIOOS ERDDAP wave models, and weather APIs to deliver real-time surf forecasts for Maui. Built end-to-end: React + TypeScript frontend, Flask API backend, multi-source data pipeline, live in production.',
-    result: 'Full-stack product — live in production',
-  },
-  {
-    category: 'AI / LLM',
-    title: 'AI-Powered Forecast Analysis Assistant',
-    description:
-      'Custom GPT trained on the company\u2019s forecast models, enabling natural language queries about budget vs. forecast, version comparisons, and variance drivers. Business leaders ask questions in plain English and get context-aware financial analysis in seconds.',
-    result: 'Hours of analyst work reduced to seconds',
-  },
-  {
-    category: 'AI / Automation',
-    title: 'Cash Flow Statement Automation',
-    description:
-      'Automated the most dreaded deliverable in finance. Built a Power Pivot pulling directly from the Fabric semantic model, replacing a process that required three senior finance people working a full day. Monthly verification keeps a human in the loop.',
-    result: 'Three people, full day \u2192 one person, under an hour',
-  },
-  {
-    category: 'Data Intelligence',
-    title: 'Multi-Island Construction Project Analytics',
-    description:
-      'Integrated NetSuite financials with HCSS project budgets into real-time Power BI dashboards. The company president used the dashboard once and scheduled training for all project managers himself. PMs now use it daily to track project health and catch issues before they compound.',
-    result: 'President became internal champion \u2014 PMs use it daily',
-  },
-  {
-    category: 'Data / AI Infrastructure',
-    title: 'AI-Ready Enterprise Data Platform',
-    description:
-      'Designed and built a Microsoft Fabric data lakehouse from scratch \u2014 no IT department, no existing infrastructure. Automated pipelines pull from NetSuite, HCSS, and other sources into a unified analytical layer. This is the foundation that makes every AI tool, dashboard, and automation possible.',
-    result: 'Ad-hoc analysis: days \u2192 minutes',
-  },
-  {
-    category: 'n8n / Automation',
-    title: 'SwellScore \u2014 AI Social Media Manager',
-    description:
-      'Built an end-to-end Instagram automation pipeline for SwellScore using n8n. Claude pulls live surf conditions and images from the SwellScore backend to generate ready-to-post content. A Discord bot delivers each post for one-click approval before auto-publishing \u2014 and a second pipeline recommends relevant accounts to engage with, surfacing suggested comments and likes.',
-    result: 'Automated content pipeline \u2014 backend to Instagram feed',
-  },
-]
+import { caseStudies } from '../data/caseStudies'
 
 export default function Projects() {
   const [ref, inView] = useInView()
@@ -61,30 +18,34 @@ export default function Projects() {
         </div>
 
         <div className="grid grid-cols-1 gap-4">
-          {projects.map((project, i) => (
-            <div
-              key={project.title}
-              className={`reveal ${inView ? 'in-view' : ''} reveal-delay-${Math.min(i + 1, 5)} card-dark group p-8 sm:p-10`}
+          {caseStudies.map((cs, i) => (
+            <Link
+              key={cs.slug}
+              to={`/case-studies/${cs.slug}`}
+              className={`reveal ${inView ? 'in-view' : ''} reveal-delay-${Math.min(i + 1, 5)} card-dark group p-8 sm:p-10 block`}
             >
               <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6">
                 <div className="flex-1">
                   <span className="inline-block text-[11px] font-semibold text-apple-dark-secondary uppercase tracking-[0.15em] mb-3">
-                    {project.category}
+                    {cs.category}
                   </span>
                   <h3 className="font-display text-xl sm:text-2xl font-bold mb-3 group-hover:text-apple-blue transition-colors duration-300">
-                    {project.title}
+                    {cs.title}
                   </h3>
                   <p className="text-white/40 text-sm leading-relaxed max-w-2xl">
-                    {project.description}
+                    {cs.summary}
                   </p>
                 </div>
                 <div className="lg:text-right shrink-0">
                   <p className="text-sm font-semibold text-apple-blue">
-                    {project.result}
+                    {cs.resultLine}
+                  </p>
+                  <p className="text-xs text-white/30 mt-2 group-hover:text-white/50 transition-colors">
+                    Read case study →
                   </p>
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

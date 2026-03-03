@@ -85,7 +85,10 @@ describe('SEO meta tags in index.html', () => {
     expect(html).toMatch(/"priceRange":\s*"\$\$\$\$"/)
   })
 
-  it('sitemap includes all case study URLs', () => {
+})
+
+describe('sitemap.xml', () => {
+  it('includes all case study URLs', () => {
     const slugs = [
       'swellscore',
       'ai-forecast-assistant',

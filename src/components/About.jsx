@@ -16,6 +16,8 @@ export default function About() {
                 alt="Adam Buechler"
                 className="w-full h-full object-cover object-top"
                 loading="lazy"
+                width={1200}
+                height={1799}
               />
             </div>
           </div>

@@ -31,7 +31,7 @@ export default function Footer() {
               <a
                 key={link.href}
                 href={link.href}
-                className="text-sm text-white/60 hover:text-white/60 transition-colors duration-300"
+                className="text-sm text-white/60 hover:text-white transition-colors duration-300"
               >
                 {link.label}
               </a>
@@ -56,7 +56,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-12 pt-8 border-t border-white/[0.06]">
-          <p className="text-xs text-white/50 text-center">
+          <p className="text-xs text-white/60 text-center">
             &copy; {new Date().getFullYear()} Buechler Pacific LLC. All rights reserved.
           </p>
         </div>

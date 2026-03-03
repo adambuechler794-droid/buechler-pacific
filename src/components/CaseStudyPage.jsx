@@ -45,7 +45,7 @@ export default function CaseStudyPage() {
     if (!cs) return
     setMeta(cs)
     return restoreMeta
-  }, [cs])
+  }, [slug])
 
   if (!cs) return <Navigate to="/" replace />
 

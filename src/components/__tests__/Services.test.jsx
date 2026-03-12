@@ -17,7 +17,7 @@ describe('Services', () => {
   it('renders all 4 service cards', () => {
     render(<Services />)
     const titles = [
-      'AI & Custom Applications',
+      'AI & Intelligent Automation',
       'Financial Planning & Analysis',
       'Power BI & Analytics',
       'Data Architecture',
@@ -27,9 +27,9 @@ describe('Services', () => {
     })
   })
 
-  it('marks AI & Custom Applications as the featured service', () => {
+  it('marks AI & Intelligent Automation as the featured service', () => {
     const { container } = render(<Services />)
-    const aiCard = screen.getByText('AI & Custom Applications').closest('[class*="card-light"]')
+    const aiCard = screen.getByText('AI & Intelligent Automation').closest('[class*="card-light"]')
     expect(aiCard.className).toContain('md:col-span-2')
   })
 

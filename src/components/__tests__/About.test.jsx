@@ -28,8 +28,8 @@ describe('About', () => {
 
   it('renders bio paragraphs', () => {
     render(<About />)
-    expect(screen.getByText(/intersection of finance and engineering/i)).toBeInTheDocument()
-    expect(screen.getByText(/director of fp&a at alpha inc/i)).toBeInTheDocument()
+    expect(screen.getByText(/intersection of finance and AI engineering/i)).toBeInTheDocument()
+    expect(screen.getByText(/director of fp&a at alpha inc\./i)).toBeInTheDocument()
     expect(screen.getByText(/uc santa barbara/i)).toBeInTheDocument()
   })
 

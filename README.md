@@ -18,6 +18,8 @@ For brand positioning, case study source material, and design documentation, see
 - **Tailwind CSS v4** — utility-first styling via `@tailwindcss/vite`
 - **Lucide React** — SVG icon library
 - **Vitest** + **Testing Library** — component and integration tests
+- **Framer Motion** — animation for demo orbital visualization
+- **Express** + **Anthropic SDK** — backend API for Claude-powered Forecast Agent chat
 - **Cloudflare Pages** — deployment target (auto-deploys from `main`)
 
 ## Getting Started
@@ -25,10 +27,13 @@ For brand positioning, case study source material, and design documentation, see
 ```bash
 npm install
 npm run dev        # http://localhost:5173
+npm run api        # Start Express API server (port 3001) — needed for /demo chat
 npm run build      # Production build → dist/
 npm run preview    # Preview production build locally
 npm test           # Run test suite
 ```
+
+The `/demo` route's Forecast Agent chat requires `ANTHROPIC_API_KEY` set in your environment.
 
 ## Project Structure
 
@@ -45,11 +50,18 @@ src/
 │   ├── Contact.jsx       # Contact form (Formspree) + info sidebar
 │   ├── Footer.jsx        # Nav links, social icons, copyright
 │   └── useInView.js      # Intersection Observer hook for scroll-reveal
-├── App.jsx               # Root — assembles all sections
+├── demo/
+│   ├── DemoPage.jsx       # FP&A Platform demo — dark canvas with orbital viz + chat
+│   ├── components/        # TopBar, OrbitalMap, EcosystemMap, ChatPanel, DetailDrawer, etc.
+│   ├── mockups/           # Rebranded FP&A workflow mockup screens
+│   └── data/              # Phase, ecosystem, and constant definitions
+├── App.jsx               # Root — routes for /, /demo, /case-studies/:slug
 ├── main.jsx              # Entry point
 └── index.css             # Tailwind config, custom properties, animations
+server.js                  # Express API — proxies chat to Claude for Forecast Agent
 docs/
 ├── case-studies/          # Detailed writeups for each case study
+├── plans/                 # Design docs and implementation plans
 ├── positioning.md         # Target audience, value props, differentiators
 └── design.md              # UI theme, typography, color system, components
 ```

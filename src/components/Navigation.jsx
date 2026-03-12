@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, Link } from 'react-router-dom'
 import { Menu, X } from 'lucide-react'
 
 const links = [
@@ -7,6 +7,7 @@ const links = [
   { label: 'Impact', href: '#impact' },
   { label: 'Work', href: '#work' },
   { label: 'About', href: '#about' },
+  { label: 'Platform Demo', href: '/demo', isRoute: true },
 ]
 
 export default function Navigation() {
@@ -49,13 +50,23 @@ export default function Navigation() {
           {/* Desktop */}
           <div className="hidden md:flex items-center gap-8">
             {links.map(link => (
-              <a
-                key={link.href}
-                href={href(link.href)}
-                className="text-[13px] text-apple-secondary hover:text-apple-text transition-colors duration-300"
-              >
-                {link.label}
-              </a>
+              link.isRoute ? (
+                <Link
+                  key={link.href}
+                  to={link.href}
+                  className="text-[13px] text-apple-secondary hover:text-apple-text transition-colors duration-300"
+                >
+                  {link.label}
+                </Link>
+              ) : (
+                <a
+                  key={link.href}
+                  href={href(link.href)}
+                  className="text-[13px] text-apple-secondary hover:text-apple-text transition-colors duration-300"
+                >
+                  {link.label}
+                </a>
+              )
             ))}
             <a
               href={href('#contact')}
@@ -83,14 +94,25 @@ export default function Navigation() {
         }`}
       >
         {links.map(link => (
-          <a
-            key={link.href}
-            href={href(link.href)}
-            onClick={() => { document.body.style.overflow = ''; setMenuOpen(false) }}
-            className="font-display text-3xl font-bold text-apple-text/70 hover:text-apple-text transition-colors"
-          >
-            {link.label}
-          </a>
+          link.isRoute ? (
+            <Link
+              key={link.href}
+              to={link.href}
+              onClick={() => { document.body.style.overflow = ''; setMenuOpen(false) }}
+              className="font-display text-3xl font-bold text-apple-text/70 hover:text-apple-text transition-colors"
+            >
+              {link.label}
+            </Link>
+          ) : (
+            <a
+              key={link.href}
+              href={href(link.href)}
+              onClick={() => { document.body.style.overflow = ''; setMenuOpen(false) }}
+              className="font-display text-3xl font-bold text-apple-text/70 hover:text-apple-text transition-colors"
+            >
+              {link.label}
+            </a>
+          )
         ))}
         <a
           href={href('#contact')}

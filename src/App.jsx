@@ -9,6 +9,7 @@ import About from './components/About'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 import CaseStudyPage from './components/CaseStudyPage'
+import DemoPage from './demo/DemoPage'
 
 function HomePage() {
   return (
@@ -34,6 +35,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/case-studies/:slug" element={<CaseStudyPage />} />
+        <Route path="/demo" element={<DemoPage />} />
       </Routes>
     </BrowserRouter>
   )

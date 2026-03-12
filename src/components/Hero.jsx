@@ -1,4 +1,5 @@
 import { ArrowRight } from 'lucide-react'
+import { Link } from 'react-router-dom'
 
 export default function Hero() {
   return (
@@ -37,6 +38,12 @@ export default function Hero() {
             Start a Project
             <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform duration-300" />
           </a>
+          <Link
+            to="/demo"
+            className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-white/10 hover:bg-white/15 backdrop-blur-sm text-apple-text font-semibold rounded-xl border border-apple-secondary/30 transition-all hover:-translate-y-0.5 hover:border-apple-secondary/50 text-[15px]"
+          >
+            See the Platform Demo
+          </Link>
           <a
             href="#work"
             className="text-apple-blue text-[15px] font-semibold hover:underline underline-offset-4 transition-all"

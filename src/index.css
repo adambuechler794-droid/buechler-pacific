@@ -84,3 +84,37 @@ section[id] {
   background: rgba(41, 151, 255, 0.2);
   color: inherit;
 }
+
+/* ── Demo Canvas Theme ── */
+.demo-canvas {
+  --color-navy: #1C3A5E;
+  --color-steel: #1A6FA0;
+  --color-light-blue: #EBF5FB;
+  --color-amber-warm: #FF6B6B; /* remapped to coral */
+  --color-green-muted: #2E7D5B;
+  --color-muted: #95A5A6;
+  --color-dark: #1A252F;
+  --color-dark-bg: #0d1117;
+  --color-dark-card: #1a2332;
+  --color-dark-surface: #141c28;
+  --color-coral-400: #FF6B6B;
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.15; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(1.05); }
+}
+
+.demo-canvas .bg-dot-grid {
+  background-image: radial-gradient(circle, rgba(26,111,160,0.08) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.demo-canvas .bg-radial-fade {
+  background: radial-gradient(ellipse at center, rgba(26,111,160,0.06) 0%, transparent 70%);
+}

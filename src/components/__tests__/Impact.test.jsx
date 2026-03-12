@@ -21,21 +21,22 @@ describe('Impact', () => {
 
   it('renders all 3 stat labels', () => {
     render(<Impact />)
-    expect(screen.getByText('Cost overruns identified')).toBeInTheDocument()
-    expect(screen.getByText('Reporting cycle')).toBeInTheDocument()
-    expect(screen.getByText('Adoption in month one')).toBeInTheDocument()
+    expect(screen.getByText('Recovered monthly')).toBeInTheDocument()
+    expect(screen.getByText('Automated')).toBeInTheDocument()
+    expect(screen.getByText('Faster analysis')).toBeInTheDocument()
   })
 
-  it('renders the text-type stat display', () => {
+  it('renders the text-type stat displays', () => {
     render(<Impact />)
-    expect(screen.getByText('2 Days')).toBeInTheDocument()
+    expect(screen.getByText('5+ Days')).toBeInTheDocument()
+    expect(screen.getByText('10x')).toBeInTheDocument()
   })
 
   it('renders stat descriptions', () => {
     render(<Impact />)
-    expect(screen.getByText(/integrated multi-system/i)).toBeInTheDocument()
-    expect(screen.getByText(/reduced from two weeks/i)).toBeInTheDocument()
-    expect(screen.getByText(/meeting users where they already work/i)).toBeInTheDocument()
+    expect(screen.getByText(/monthly close accelerated/i)).toBeInTheDocument()
+    expect(screen.getByText(/cash flow statement/i)).toBeInTheDocument()
+    expect(screen.getByText(/complex queries done in minutes/i)).toBeInTheDocument()
   })
 
   it('has the correct section id for nav anchoring', () => {

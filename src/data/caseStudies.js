@@ -16,6 +16,7 @@ export const caseStudies = [
     ],
     tech: ['React', 'TypeScript', 'Python', 'Flask', 'NOAA API', 'PacIOOS ERDDAP', 'Vite'],
     resultLine: 'Full-stack product — live in production',
+    liveUrl: 'https://swellscore.app',
   },
   {
     slug: 'ai-forecast-assistant',
@@ -91,6 +92,7 @@ export const caseStudies = [
     ],
     tech: ['Microsoft Fabric', 'Data Factory', 'Lakehouse', 'SQL', 'NetSuite API', 'Power BI'],
     resultLine: 'Ad-hoc analysis: days → minutes',
+    liveUrl: 'https://process-map-production.up.railway.app',
   },
 ]
 

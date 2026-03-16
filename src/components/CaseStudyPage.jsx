@@ -75,6 +75,17 @@ export default function CaseStudyPage() {
           <div className="border-l-2 border-apple-blue pl-6 py-2">
             <p className="text-apple-blue font-semibold text-lg">{cs.resultLine}</p>
           </div>
+          {cs.liveUrl && (
+            <a
+              href={cs.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 mt-6 bg-apple-blue text-white px-6 py-2.5 rounded-full font-medium text-sm hover:bg-blue-500 transition-colors duration-300"
+            >
+              <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+              View Live
+            </a>
+          )}
         </div>
 
         {/* Summary */}

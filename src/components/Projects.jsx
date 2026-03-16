@@ -40,6 +40,12 @@ export default function Projects() {
                   <p className="text-sm font-semibold text-apple-blue">
                     {cs.resultLine}
                   </p>
+                  {cs.liveUrl && (
+                    <p className="text-xs text-green-400/70 mt-1 flex items-center gap-1.5 lg:justify-end">
+                      <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+                      Live
+                    </p>
+                  )}
                   <p className="text-xs text-white/30 mt-2 group-hover:text-white/50 transition-colors">
                     Read case study →
                   </p>

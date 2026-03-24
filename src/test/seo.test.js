@@ -91,8 +91,8 @@ describe('sitemap.xml', () => {
   it('includes all case study URLs', () => {
     const slugs = [
       'swellscore',
-      'ai-forecast-assistant',
-      'cash-flow-automation',
+      'ai-agents-finance',
+      'close-transformation',
       'construction-analytics',
       'enterprise-data-platform',
     ]

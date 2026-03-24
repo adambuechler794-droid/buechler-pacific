@@ -17,18 +17,18 @@ beforeEach(() => {
 describe('Projects', () => {
   it('renders all 5 case studies', () => {
     render(<MemoryRouter><Projects /></MemoryRouter>)
+    expect(screen.getByText(/swellscore/i)).toBeInTheDocument()
+    expect(screen.getByText(/ai agents for financial planning/i)).toBeInTheDocument()
+    expect(screen.getByText(/month-end close transformation/i)).toBeInTheDocument()
     expect(screen.getByText(/multi-island construction/i)).toBeInTheDocument()
     expect(screen.getByText(/enterprise data platform/i)).toBeInTheDocument()
-    expect(screen.getByText(/cash flow statement/i)).toBeInTheDocument()
-    expect(screen.getByText(/ai-powered forecast/i)).toBeInTheDocument()
-    expect(screen.getByText(/swellscore/i)).toBeInTheDocument()
   })
 
   it('shows a result line for each project', () => {
     render(<MemoryRouter><Projects /></MemoryRouter>)
     expect(screen.getByText(/live in production/i)).toBeInTheDocument()
-    expect(screen.getByText(/hours of analyst work reduced/i)).toBeInTheDocument()
-    expect(screen.getByText(/one person, under an hour/i)).toBeInTheDocument()
+    expect(screen.getByText(/data retrieval → strategic analysis/i)).toBeInTheDocument()
+    expect(screen.getByText(/10-day close/i)).toBeInTheDocument()
     expect(screen.getByText(/pms use it daily/i)).toBeInTheDocument()
     expect(screen.getByText(/days → minutes/i)).toBeInTheDocument()
   })

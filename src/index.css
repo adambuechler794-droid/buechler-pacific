@@ -12,6 +12,19 @@
   --color-apple-dark: #1d1d1f;
   --color-apple-dark-secondary: #424245;
   --color-apple-card-dark: #2a2a2d;
+
+  /* Demo palette */
+  --color-navy: #1c3a5e;
+  --color-steel: #1a6fa0;
+  --color-light-blue: #ebf5fb;
+  --color-amber-warm: #ff6b6b;
+  --color-green-muted: #2e7d5b;
+  --color-muted: #95a5a6;
+  --color-dark: #1a252f;
+  --color-dark-bg: #0d1117;
+  --color-dark-card: #1a2332;
+  --color-dark-surface: #141c28;
+  --color-coral-400: #ff6b6b;
 }
 
 html {
@@ -87,17 +100,9 @@ section[id] {
 
 /* ── Demo Canvas Theme ── */
 .demo-canvas {
-  --color-navy: #1C3A5E;
-  --color-steel: #1A6FA0;
-  --color-light-blue: #EBF5FB;
-  --color-amber-warm: #FF6B6B; /* remapped to coral */
-  --color-green-muted: #2E7D5B;
-  --color-muted: #95A5A6;
-  --color-dark: #1A252F;
-  --color-dark-bg: #0d1117;
-  --color-dark-card: #1a2332;
-  --color-dark-surface: #141c28;
-  --color-coral-400: #FF6B6B;
+  color-scheme: dark;
+  background: var(--color-dark-bg);
+  color: var(--color-white);
 }
 
 @keyframes spin-slow {

@@ -6,7 +6,6 @@ const html = readFileSync(resolve('index.html'), 'utf-8')
 const sitemap = readFileSync(resolve('public/sitemap.xml'), 'utf-8')
 const linkedinServiceHtml = readFileSync(resolve('public/services/linkedin-presence-os/index.html'), 'utf-8')
 const demoHtml = readFileSync(resolve('public/demo/index.html'), 'utf-8')
-const demoLiveHtml = readFileSync(resolve('public/demo/live/index.html'), 'utf-8')
 
 const caseStudyStaticPages = {
   swellscore: {
@@ -170,17 +169,11 @@ describe('demo static page', () => {
     expect(demoHtml).toMatch(/rel="canonical".*https:\/\/buechlerpacific\.com\/demo\//)
   })
 
-  it('includes a launch path to the interactive walkthrough', () => {
+  it('redirects buyers into the live interactive walkthrough', () => {
+    expect(demoHtml).toMatch(/http-equiv="refresh".*url=\/demo\/live\//)
+    expect(demoHtml).toMatch(/window\.location\.replace\('\/demo\/live\/'\)/)
     expect(demoHtml).toMatch(/href="\/demo\/live\/?"/)
     expect(demoHtml).toMatch(/Interactive Demo/)
-  })
-})
-
-describe('demo live handoff page', () => {
-  it('has route-specific metadata and redirects to /demo/live', () => {
-    expect(demoLiveHtml).toMatch(/<title>Launch FP&A Platform Demo \| Buechler Pacific<\/title>/)
-    expect(demoLiveHtml).toMatch(/http-equiv="refresh".*url=\/demo\/live\//)
-    expect(demoLiveHtml).toMatch(/window\.location\.replace\('\/demo\/live\/'\)/)
-    expect(demoLiveHtml).toMatch(/Opening the FP&A Platform Demo/)
+    expect(demoHtml).toMatch(/Opening the FP(&|&amp;)A Platform Demo/)
   })
 })

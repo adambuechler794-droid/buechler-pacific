@@ -7,6 +7,7 @@ const navLinks = [
   { label: 'Work', href: '#work' },
   { label: 'About', href: '#about' },
   { label: 'LinkedIn OS', href: '/services/linkedin-presence-os/' },
+  { label: 'Platform Demo', href: '/demo/live/' },
   { label: 'Contact', href: '#contact' },
 ]
 

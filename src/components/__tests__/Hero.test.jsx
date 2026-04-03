@@ -46,6 +46,6 @@ describe('Hero', () => {
   it('has a platform demo CTA', () => {
     render(<MemoryRouter><Hero /></MemoryRouter>)
     const demoLink = screen.getByRole('link', { name: /see the platform demo/i })
-    expect(demoLink).toHaveAttribute('href', '/demo')
+    expect(demoLink).toHaveAttribute('href', '/demo/live/')
   })
 })

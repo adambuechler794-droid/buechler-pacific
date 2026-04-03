@@ -1,3 +1,4 @@
+import { ArrowRight, MessageSquare } from 'lucide-react'
 import { useInView } from './useInView'
 import { caseStudies } from '../data/caseStudies'
 
@@ -17,6 +18,37 @@ export default function Projects() {
         </div>
 
         <div className="grid grid-cols-1 gap-4">
+          <a
+            href="/services/linkedin-presence-os/"
+            className={`reveal ${inView ? 'in-view' : ''} card-dark group p-8 sm:p-10 block border border-apple-blue/20 bg-[linear-gradient(135deg,rgba(42,42,45,1),rgba(26,35,50,1))]`}
+          >
+            <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6">
+              <div className="flex-1 max-w-3xl">
+                <div className="w-12 h-12 rounded-2xl bg-white/[0.06] flex items-center justify-center mb-6">
+                  <MessageSquare size={22} className="text-white" />
+                </div>
+                <p className="inline-flex items-center rounded-full border border-apple-blue/30 bg-apple-blue/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-apple-blue mb-4">
+                  New Offering
+                </p>
+                <h3 className="font-display text-2xl sm:text-3xl font-bold mb-3 text-white group-hover:text-apple-blue transition-colors duration-300">
+                  LinkedIn Presence OS
+                </h3>
+                <p className="text-white/60 text-[15px] leading-relaxed max-w-2xl">
+                  A high-touch LinkedIn system for founders, consultants, and executives who should be more visible than they are. Voice calibration, relationship radar, weekly drafts, engagement guidance, and human approval in one workflow.
+                </p>
+              </div>
+              <div className="lg:text-right shrink-0 flex flex-col justify-between">
+                <p className="text-sm font-semibold text-apple-blue">
+                  Done-with-you visibility without generic AI sludge
+                </p>
+                <p className="mt-4 inline-flex items-center gap-2 text-sm text-white/70 group-hover:text-white transition-colors">
+                  Explore the service
+                  <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
+                </p>
+              </div>
+            </div>
+          </a>
+
           {caseStudies.map((cs, i) => (
             <a
               key={cs.slug}

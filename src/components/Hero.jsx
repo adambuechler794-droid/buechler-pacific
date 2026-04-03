@@ -14,11 +14,11 @@ export default function Hero() {
         </p>
 
         {/* Headline */}
-        <h1 className="font-display font-bold tracking-tight leading-[0.9] text-apple-text">
+        <h1 className="font-display font-bold tracking-[-0.04em] leading-[0.98] sm:leading-[0.94] text-apple-text">
           <span className="block text-[clamp(3rem,11vw,8rem)]">
             AI Systems
           </span>
-          <span className="block text-[clamp(3rem,11vw,8rem)]">
+          <span className="block text-[clamp(3rem,11vw,8rem)] mt-[0.04em] sm:mt-0">
             for Finance.
           </span>
         </h1>
@@ -39,7 +39,7 @@ export default function Hero() {
             <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform duration-300" />
           </a>
           <Link
-            to="/demo"
+            to="/demo/live/"
             className="inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-white/10 hover:bg-white/15 backdrop-blur-sm text-apple-text font-semibold rounded-xl border border-apple-secondary/30 transition-all hover:-translate-y-0.5 hover:border-apple-secondary/50 text-[15px]"
           >
             See the Platform Demo

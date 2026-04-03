@@ -1,4 +1,4 @@
-import { Cpu, BarChart3, Brain, Database, ArrowRight, MessageSquare } from 'lucide-react'
+import { Cpu, BarChart3, Brain, Database } from 'lucide-react'
 import { useInView } from './useInView'
 
 const services = [
@@ -88,39 +88,6 @@ export default function Services() {
               </div>
             )
           })}
-        </div>
-
-        <div className={`reveal ${inView ? 'in-view' : ''} reveal-delay-5 mt-8`}>
-          <a
-            href="/services/linkedin-presence-os/"
-            className="card-light block p-8 sm:p-10 border border-black/[0.04] group"
-          >
-            <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6">
-              <div className="max-w-3xl">
-                <div className="w-12 h-12 rounded-2xl bg-apple-bg flex items-center justify-center mb-6">
-                  <MessageSquare size={22} className="text-apple-text" />
-                </div>
-                <p className="text-[13px] text-apple-secondary tracking-[0.2em] uppercase mb-4 font-medium">
-                  New Offer
-                </p>
-                <h3 className="font-display text-2xl sm:text-3xl font-bold text-apple-text mb-3">
-                  LinkedIn Presence OS
-                </h3>
-                <p className="text-apple-secondary text-[15px] leading-relaxed">
-                  A high-touch LinkedIn presence system for founders, consultants, and executives who
-                  should be more visible than they are. Voice calibration, relationship radar, weekly
-                  drafts, engagement guidance, and human approval in one workflow.
-                </p>
-              </div>
-
-              <div className="shrink-0 flex items-center">
-                <span className="inline-flex items-center gap-2 text-apple-blue font-semibold group-hover:gap-3 transition-all duration-300">
-                  Explore the service
-                  <ArrowRight size={16} />
-                </span>
-              </div>
-            </div>
-          </a>
         </div>
       </div>
     </section>

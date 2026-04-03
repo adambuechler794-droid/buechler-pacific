@@ -177,10 +177,10 @@ describe('demo static page', () => {
 })
 
 describe('demo live handoff page', () => {
-  it('has route-specific metadata and redirects to /demo', () => {
+  it('has route-specific metadata and redirects to /demo/live', () => {
     expect(demoLiveHtml).toMatch(/<title>Launch FP&A Platform Demo \| Buechler Pacific<\/title>/)
-    expect(demoLiveHtml).toMatch(/http-equiv="refresh".*url=\/demo\//)
-    expect(demoLiveHtml).toMatch(/window\.location\.replace\('\/demo\/'\)/)
+    expect(demoLiveHtml).toMatch(/http-equiv="refresh".*url=\/demo\/live\//)
+    expect(demoLiveHtml).toMatch(/window\.location\.replace\('\/demo\/live\/'\)/)
     expect(demoLiveHtml).toMatch(/Opening the FP&A Platform Demo/)
   })
 })

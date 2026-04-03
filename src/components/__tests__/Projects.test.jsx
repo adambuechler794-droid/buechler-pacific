@@ -15,6 +15,14 @@ beforeEach(() => {
 })
 
 describe('Projects', () => {
+  it('highlights LinkedIn Presence OS as a new offering at the top of the work section', () => {
+    render(<MemoryRouter><Projects /></MemoryRouter>)
+    const links = screen.getAllByRole('link')
+    expect(screen.getByText(/new offering/i)).toBeInTheDocument()
+    expect(screen.getByText(/linkedin presence os/i)).toBeInTheDocument()
+    expect(links[0]).toHaveAttribute('href', '/services/linkedin-presence-os/')
+  })
+
   it('renders all 5 case studies', () => {
     render(<MemoryRouter><Projects /></MemoryRouter>)
     expect(screen.getByText(/swellscore/i)).toBeInTheDocument()
@@ -45,6 +53,7 @@ describe('Projects', () => {
   it('each card links to the correct case study page', () => {
     render(<MemoryRouter><Projects /></MemoryRouter>)
     const links = screen.getAllByRole('link')
+    expect(links.some(l => l.getAttribute('href') === '/services/linkedin-presence-os/')).toBe(true)
     expect(links.some(l => l.getAttribute('href') === '/case-studies/swellscore/')).toBe(true)
     expect(links.some(l => l.getAttribute('href') === '/case-studies/enterprise-data-platform/')).toBe(true)
   })

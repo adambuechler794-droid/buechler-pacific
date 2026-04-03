@@ -7,7 +7,7 @@ const links = [
   { label: 'Impact', href: '#impact' },
   { label: 'Work', href: '#work' },
   { label: 'About', href: '#about' },
-  { label: 'Platform Demo', href: '/demo/' },
+  { label: 'Platform Demo', href: '/demo/live/' },
 ]
 
 export default function Navigation() {

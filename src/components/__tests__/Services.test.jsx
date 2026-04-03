@@ -42,9 +42,8 @@ describe('Services', () => {
     expect(screen.getByText('Microsoft Fabric')).toBeInTheDocument()
   })
 
-  it('links to the LinkedIn Presence OS service page', () => {
+  it('keeps the solutions section focused on the core service cards', () => {
     render(<MemoryRouter><Services /></MemoryRouter>)
-    const serviceLink = screen.getByRole('link', { name: /explore the service/i })
-    expect(serviceLink).toHaveAttribute('href', '/services/linkedin-presence-os/')
+    expect(screen.queryByText(/linkedin presence os/i)).not.toBeInTheDocument()
   })
 })

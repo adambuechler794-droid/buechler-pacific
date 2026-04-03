@@ -8,13 +8,16 @@ export default function Projects() {
   return (
     <section id="work" className="relative py-28 sm:py-36 bg-apple-dark text-white" ref={ref}>
       <div className="max-w-7xl mx-auto px-6">
-        <div className={`reveal ${inView ? 'in-view' : ''} max-w-2xl mb-16`}>
+        <div className={`reveal ${inView ? 'in-view' : ''} max-w-3xl mb-16`}>
           <p className="text-[13px] text-apple-dark-secondary tracking-[0.2em] uppercase mb-4 font-medium">
-            Selected Work
+            Proof
           </p>
           <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight">
-            Case studies.
+            Built for production, not demos.
           </h2>
+          <p className="mt-5 text-lg text-white/50 leading-relaxed">
+            A few examples of what happens when finance infrastructure, reporting systems, and AI workflows are treated like real operating assets.
+          </p>
         </div>
 
         <div className="grid grid-cols-1 gap-4">
@@ -28,14 +31,24 @@ export default function Projects() {
                   <MessageSquare size={22} className="text-white" />
                 </div>
                 <p className="inline-flex items-center rounded-full border border-apple-blue/30 bg-apple-blue/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-apple-blue mb-4">
-                  New Offering
+                  New Launch
                 </p>
                 <h3 className="font-display text-2xl sm:text-3xl font-bold mb-3 text-white group-hover:text-apple-blue transition-colors duration-300">
                   LinkedIn Presence OS
                 </h3>
                 <p className="text-white/60 text-[15px] leading-relaxed max-w-2xl">
-                  A high-touch LinkedIn system for founders, consultants, and executives who should be more visible than they are. Voice calibration, relationship radar, weekly drafts, engagement guidance, and human approval in one workflow.
+                  A done-with-you LinkedIn system for founders, consultants, and executives who know they should be publishing more, but do not want to sound synthetic. Voice calibration, relationship radar, weekly drafts, engagement guidance, and human approval in one workflow.
                 </p>
+                <div className="mt-6 flex flex-wrap gap-2">
+                  {['Voice capture', 'Weekly drafts', 'Relationship radar', 'Human approval'].map(item => (
+                    <span
+                      key={item}
+                      className="px-3 py-1.5 text-xs text-white/65 bg-white/[0.06] rounded-full"
+                    >
+                      {item}
+                    </span>
+                  ))}
+                </div>
               </div>
               <div className="lg:text-right shrink-0 flex flex-col justify-between">
                 <p className="text-sm font-semibold text-apple-blue">
@@ -68,6 +81,9 @@ export default function Projects() {
                   </p>
                 </div>
                 <div className="lg:text-right shrink-0">
+                  <p className="text-[10px] font-semibold tracking-[0.16em] uppercase text-white/30 mb-2">
+                    Outcome
+                  </p>
                   <p className="text-sm font-semibold text-apple-blue">
                     {cs.resultLine}
                   </p>
@@ -77,8 +93,8 @@ export default function Projects() {
                       Live
                     </p>
                   )}
-                  <p className="text-xs text-white/30 mt-2 group-hover:text-white/50 transition-colors">
-                    Read case study →
+                  <p className="text-xs text-white/30 mt-3 group-hover:text-white/50 transition-colors">
+                    Read the build story &rarr;
                   </p>
                 </div>
               </div>

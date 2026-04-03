@@ -56,13 +56,12 @@ export default function Contact() {
               Contact
             </p>
             <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight">
-              Let&apos;s build
+              Bring me the messy
               <br />
-              something.
+              workflow.
             </h2>
             <p className="mt-6 text-lg text-white/40 leading-relaxed max-w-md">
-              Have a data challenge? Let&apos;s talk about how AI-powered systems
-              can transform your operations.
+              If reporting is manual, approvals are slow, or critical data lives in five different places, send the situation. I&apos;ll tell you what I would automate, what I would leave human, and what to build first.
             </p>
 
             <div className="mt-12 space-y-5">

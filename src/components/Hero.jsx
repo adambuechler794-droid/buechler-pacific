@@ -15,19 +15,29 @@ export default function Hero() {
 
         {/* Headline */}
         <h1 className="font-display font-bold tracking-[-0.04em] leading-[0.98] sm:leading-[0.94] text-apple-text">
-          <span className="block text-[clamp(3rem,11vw,8rem)]">
+          <span className="block text-[clamp(3rem,11vw,7.5rem)]">
             AI Systems
           </span>
-          <span className="block text-[clamp(3rem,11vw,8rem)] mt-[0.04em] sm:mt-0">
-            for Finance.
+          <span className="block text-[clamp(3rem,11vw,7.5rem)] mt-[0.04em] sm:mt-0">
+            for Real Finance Work.
           </span>
         </h1>
 
         {/* Subtext */}
-        <p className="mt-8 text-xl sm:text-2xl text-apple-secondary max-w-xl mx-auto leading-relaxed font-light">
-          We engineer AI-powered systems that turn your data into decisions.
-          From infrastructure to intelligence. Based in Maui.
+        <p className="mt-8 text-xl sm:text-2xl text-apple-secondary max-w-3xl mx-auto leading-relaxed font-light">
+          We build finance infrastructure, reporting workflows, and operator-facing AI tools for teams that are done living inside spreadsheet debt.
         </p>
+
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-2.5">
+          {['Microsoft Fabric', 'Workflow Automation', 'Executive Reporting', 'Production AI Systems'].map(item => (
+            <span
+              key={item}
+              className="px-3.5 py-1.5 rounded-full bg-white/70 border border-black/[0.05] text-[12px] font-medium text-apple-secondary"
+            >
+              {item}
+            </span>
+          ))}
+        </div>
 
         {/* CTAs */}
         <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-5">
@@ -48,7 +58,7 @@ export default function Hero() {
             href="#work"
             className="text-apple-blue text-[15px] font-semibold hover:underline underline-offset-4 transition-all"
           >
-            View our work &rsaquo;
+            Review case studies &rsaquo;
           </a>
         </div>
       </div>

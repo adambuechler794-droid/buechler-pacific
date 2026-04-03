@@ -18,7 +18,7 @@ describe('Hero', () => {
   it('renders the main headline', () => {
     render(<MemoryRouter><Hero /></MemoryRouter>)
     expect(screen.getByText('AI Systems')).toBeInTheDocument()
-    expect(screen.getByText('for Finance.')).toBeInTheDocument()
+    expect(screen.getByText('for Real Finance Work.')).toBeInTheDocument()
   })
 
   it('renders the overline brand name', () => {
@@ -28,7 +28,7 @@ describe('Hero', () => {
 
   it('renders the subtext about AI-powered systems', () => {
     render(<MemoryRouter><Hero /></MemoryRouter>)
-    expect(screen.getByText(/ai-powered systems/i)).toBeInTheDocument()
+    expect(screen.getByText(/spreadsheet debt/i)).toBeInTheDocument()
   })
 
   it('has a primary CTA linking to the contact section', () => {
@@ -39,7 +39,7 @@ describe('Hero', () => {
 
   it('has a secondary CTA linking to the work section', () => {
     render(<MemoryRouter><Hero /></MemoryRouter>)
-    const workLink = screen.getByRole('link', { name: /view our work/i })
+    const workLink = screen.getByRole('link', { name: /review case studies/i })
     expect(workLink).toHaveAttribute('href', '#work')
   })
 

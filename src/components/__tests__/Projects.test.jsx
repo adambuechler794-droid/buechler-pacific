@@ -18,7 +18,7 @@ describe('Projects', () => {
   it('highlights LinkedIn Presence OS as a new offering at the top of the work section', () => {
     render(<MemoryRouter><Projects /></MemoryRouter>)
     const links = screen.getAllByRole('link')
-    expect(screen.getByText(/new offering/i)).toBeInTheDocument()
+    expect(screen.getByText(/new launch/i)).toBeInTheDocument()
     expect(screen.getByText(/linkedin presence os/i)).toBeInTheDocument()
     expect(links[0]).toHaveAttribute('href', '/services/linkedin-presence-os/')
   })

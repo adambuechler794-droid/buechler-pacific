@@ -18,10 +18,10 @@ describe('Services', () => {
   it('renders all 4 service cards', () => {
     render(<MemoryRouter><Services /></MemoryRouter>)
     const titles = [
-      'AI & Intelligent Automation',
-      'Financial Planning & Analysis',
-      'Power BI & Analytics',
-      'Data Architecture',
+      'Operator AI & Workflow Automation',
+      'Finance Operating Systems',
+      'Reporting & Decision Support',
+      'Data Foundations',
     ]
     titles.forEach((title) => {
       expect(screen.getByText(title)).toBeInTheDocument()
@@ -32,13 +32,14 @@ describe('Services', () => {
     render(<MemoryRouter><Services /></MemoryRouter>)
     expect(screen.getByText('Flagship Capability')).toBeInTheDocument()
     expect(screen.getByText('What This Includes')).toBeInTheDocument()
+    expect(screen.getByText(/stitching systems together by hand/i)).toBeInTheDocument()
   })
 
   it('renders feature pills for each service', () => {
     render(<MemoryRouter><Services /></MemoryRouter>)
-    expect(screen.getByText('Custom GPT Tools')).toBeInTheDocument()
-    expect(screen.getByText('Scenario Planning')).toBeInTheDocument()
-    expect(screen.getByText('Custom Dashboards')).toBeInTheDocument()
+    expect(screen.getByText('Internal AI Tools')).toBeInTheDocument()
+    expect(screen.getByText('Planning Workflows')).toBeInTheDocument()
+    expect(screen.getByText('Executive Dashboards')).toBeInTheDocument()
     expect(screen.getByText('Microsoft Fabric')).toBeInTheDocument()
   })
 

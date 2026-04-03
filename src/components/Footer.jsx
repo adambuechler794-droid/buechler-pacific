@@ -1,3 +1,4 @@
+import { useLocation } from 'react-router-dom'
 import { Github, Linkedin, Mail } from 'lucide-react'
 
 const navLinks = [
@@ -5,6 +6,7 @@ const navLinks = [
   { label: 'Impact', href: '#impact' },
   { label: 'Work', href: '#work' },
   { label: 'About', href: '#about' },
+  { label: 'LinkedIn OS', href: '/services/linkedin-presence-os/' },
   { label: 'Contact', href: '#contact' },
 ]
 
@@ -15,6 +17,10 @@ const socialLinks = [
 ]
 
 export default function Footer() {
+  const location = useLocation()
+  const isHome = location.pathname === '/'
+  const href = (anchor) => (isHome ? anchor : `/${anchor}`)
+
   return (
     <footer className="bg-apple-dark text-white/40 py-16 border-t border-white/[0.06]">
       <div className="max-w-7xl mx-auto px-6">
@@ -30,7 +36,7 @@ export default function Footer() {
             {navLinks.map(link => (
               <a
                 key={link.href}
-                href={link.href}
+                href={link.href.startsWith('#') ? href(link.href) : link.href}
                 className="text-sm text-white/60 hover:text-white transition-colors duration-300"
               >
                 {link.label}

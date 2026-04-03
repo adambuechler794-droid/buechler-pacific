@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import { describe, it, expect, beforeEach } from 'vitest'
+import { MemoryRouter } from 'react-router-dom'
 import Footer from '../Footer'
 
 beforeEach(() => {
@@ -15,32 +16,32 @@ beforeEach(() => {
 
 describe('Footer', () => {
   it('renders the Buechler Pacific brand name', () => {
-    render(<Footer />)
+    render(<MemoryRouter><Footer /></MemoryRouter>)
     expect(screen.getByText('Buechler Pacific')).toBeInTheDocument()
   })
 
   it('links to the correct LinkedIn profile', () => {
-    render(<Footer />)
-    const linkedinLink = screen.getByRole('link', { name: /linkedin/i })
+    render(<MemoryRouter><Footer /></MemoryRouter>)
+    const linkedinLink = screen.getByLabelText('LinkedIn')
     expect(linkedinLink).toHaveAttribute('href', 'https://www.linkedin.com/in/adambuechler/')
     expect(linkedinLink).toHaveAttribute('target', '_blank')
   })
 
   it('links to the correct GitHub profile', () => {
-    render(<Footer />)
+    render(<MemoryRouter><Footer /></MemoryRouter>)
     const githubLink = screen.getByRole('link', { name: /github/i })
     expect(githubLink).toHaveAttribute('href', 'https://github.com/adambuechler794-droid')
     expect(githubLink).toHaveAttribute('target', '_blank')
   })
 
   it('links to the correct email address', () => {
-    render(<Footer />)
+    render(<MemoryRouter><Footer /></MemoryRouter>)
     const emailLink = screen.getByRole('link', { name: /email/i })
     expect(emailLink).toHaveAttribute('href', 'mailto:adam.buechler@buechlerpacific.com')
   })
 
   it('shows the current year in copyright', () => {
-    render(<Footer />)
+    render(<MemoryRouter><Footer /></MemoryRouter>)
     const year = new Date().getFullYear()
     expect(screen.getByText(new RegExp(`${year}`))).toBeInTheDocument()
   })

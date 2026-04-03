@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SwellScore: Full-Stack Surf Forecast App | Buechler Pacific</title>
+    <meta
+      name="description"
+      content="How Buechler Pacific built a full-stack surf forecast app integrating NOAA buoy data, ERDDAP wave models, and weather APIs — live in production on Maui."
+    />
+    <link rel="canonical" href="https://buechlerpacific.com/case-studies/swellscore/" />
+    <meta property="og:title" content="SwellScore: Full-Stack Surf Forecast App | Buechler Pacific" />
+    <meta
+      property="og:description"
+      content="Full-stack web application delivering real-time surf forecasts for Maui with multi-source data integration and graceful fallbacks."
+    />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://buechlerpacific.com/case-studies/swellscore/" />
+    <meta property="og:image" content="https://buechlerpacific.com/og-image.svg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="SwellScore: Full-Stack Surf Forecast App | Buechler Pacific" />
+    <meta
+      name="twitter:description"
+      content="A full-stack product built end-to-end for hyperlocal Maui surf forecasting."
+    />
+    <link rel="stylesheet" href="/route-pages.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;800&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RHP2LLGLDC"></script>
+    <script src="/route-pages-analytics.js"></script>
+  </head>
+  <body>
+    <div class="shell">
+      <header class="nav"><a href="/">Buechler Pacific</a></header>
+      <a class="back-link" href="/#work">← Back to Work</a>
+      <section class="hero">
+        <div class="eyebrow">AI / Product</div>
+        <h1>SwellScore — Real-Time Surf Forecast System</h1>
+        <div class="result-line">Full-stack product — live in production</div>
+        <p class="lede">
+          Full-stack web application delivering real-time surf forecasts for Maui. Built end-to-end:
+          React + TypeScript frontend, Flask API backend, and a multi-source data pipeline integrating
+          NOAA buoys, PacIOOS ERDDAP wave models, and weather APIs.
+        </p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://swellscore.app" target="_blank" rel="noopener noreferrer">View Live</a>
+          <a class="btn btn-secondary" href="/#contact">Start a Project</a>
+        </div>
+      </section>
+
+      <section class="section-grid">
+        <article class="card panel">
+          <h3>The Challenge</h3>
+          <p class="copy">
+            Maui surfers had no reliable, break-specific forecast tool. Existing services used generic
+            regional models that missed the nuance of individual breaks. Building one required integrating
+            multiple data sources with different APIs, formats, and update cadences and making it fast
+            enough for a mobile user checking conditions at the beach.
+          </p>
+        </article>
+        <article class="card panel">
+          <h3>The Solution</h3>
+          <p class="copy">
+            Built a complete product from scratch: a React + TypeScript frontend optimized for mobile and
+            a Flask API backend aggregating PacIOOS ERDDAP wave models, NOAA buoy readings, WRF wind
+            forecasts, and tide data, with graceful fallbacks when primary sources go offline.
+          </p>
+        </article>
+        <article class="card panel">
+          <h3>Results</h3>
+          <ul class="list">
+            <li><span class="dot"></span><span>Full-stack product live in production</span></li>
+            <li><span class="dot"></span><span>Real-time forecasts for 10 Maui surf breaks</span></li>
+            <li><span class="dot"></span><span>Multi-source data pipeline with graceful fallbacks</span></li>
+            <li><span class="dot"></span><span>Mobile-optimized for on-beach use</span></li>
+          </ul>
+        </article>
+        <article class="card panel">
+          <h3>Tech Stack</h3>
+          <div class="tags">
+            <span class="tag">React</span>
+            <span class="tag">TypeScript</span>
+            <span class="tag">Python</span>
+            <span class="tag">Flask</span>
+            <span class="tag">NOAA API</span>
+            <span class="tag">PacIOOS ERDDAP</span>
+            <span class="tag">Vite</span>
+          </div>
+        </article>
+      </section>
+    </div>
+  </body>
+</html>

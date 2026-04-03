@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom'
 import { useInView } from './useInView'
 import { caseStudies } from '../data/caseStudies'
 
@@ -19,9 +18,9 @@ export default function Projects() {
 
         <div className="grid grid-cols-1 gap-4">
           {caseStudies.map((cs, i) => (
-            <Link
+            <a
               key={cs.slug}
-              to={`/case-studies/${cs.slug}`}
+              href={`/case-studies/${cs.slug}/`}
               className={`reveal ${inView ? 'in-view' : ''} reveal-delay-${Math.min(i + 1, 5)} card-dark group p-8 sm:p-10 block`}
             >
               <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6">
@@ -51,7 +50,7 @@ export default function Projects() {
                   </p>
                 </div>
               </div>
-            </Link>
+            </a>
           ))}
         </div>
       </div>

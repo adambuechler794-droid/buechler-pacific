@@ -4,6 +4,32 @@ import { describe, it, expect } from 'vitest'
 
 const html = readFileSync(resolve('index.html'), 'utf-8')
 const sitemap = readFileSync(resolve('public/sitemap.xml'), 'utf-8')
+const linkedinServiceHtml = readFileSync(resolve('public/services/linkedin-presence-os/index.html'), 'utf-8')
+const demoHtml = readFileSync(resolve('public/demo/index.html'), 'utf-8')
+const demoLiveHtml = readFileSync(resolve('public/demo/live/index.html'), 'utf-8')
+
+const caseStudyStaticPages = {
+  swellscore: {
+    file: readFileSync(resolve('public/case-studies/swellscore/index.html'), 'utf-8'),
+    title: 'SwellScore: Full-Stack Surf Forecast App | Buechler Pacific',
+  },
+  'ai-agents-finance': {
+    file: readFileSync(resolve('public/case-studies/ai-agents-finance/index.html'), 'utf-8'),
+    title: 'AI Agents for Financial Planning & Data Analysis | Buechler Pacific',
+  },
+  'close-transformation': {
+    file: readFileSync(resolve('public/case-studies/close-transformation/index.html'), 'utf-8'),
+    title: 'Month-End Close Transformation | Buechler Pacific',
+  },
+  'construction-analytics': {
+    file: readFileSync(resolve('public/case-studies/construction-analytics/index.html'), 'utf-8'),
+    title: 'Construction Project Analytics Dashboards | Buechler Pacific',
+  },
+  'enterprise-data-platform': {
+    file: readFileSync(resolve('public/case-studies/enterprise-data-platform/index.html'), 'utf-8'),
+    title: 'AI-Ready Enterprise Data Platform | Buechler Pacific',
+  },
+}
 
 describe('SEO meta tags in index.html', () => {
   it('has a descriptive title', () => {
@@ -90,14 +116,71 @@ describe('SEO meta tags in index.html', () => {
 describe('sitemap.xml', () => {
   it('includes all case study URLs', () => {
     const slugs = [
-      'swellscore',
-      'ai-agents-finance',
-      'close-transformation',
-      'construction-analytics',
-      'enterprise-data-platform',
+      'swellscore/',
+      'ai-agents-finance/',
+      'close-transformation/',
+      'construction-analytics/',
+      'enterprise-data-platform/',
     ]
     slugs.forEach(slug => {
       expect(sitemap).toMatch(new RegExp(`/case-studies/${slug}`))
     })
+  })
+
+  it('includes the LinkedIn Presence OS service page', () => {
+    expect(sitemap).toMatch(/\/services\/linkedin-presence-os\//)
+  })
+
+  it('includes the demo landing page', () => {
+    expect(sitemap).toMatch(/https:\/\/buechlerpacific\.com\/demo\//)
+  })
+})
+
+describe('LinkedIn Presence OS static page', () => {
+  it('has a route-specific title and canonical', () => {
+    expect(linkedinServiceHtml).toMatch(/<title>LinkedIn Presence OS \| Buechler Pacific<\/title>/)
+    expect(linkedinServiceHtml).toMatch(/rel="canonical".*https:\/\/buechlerpacific\.com\/services\/linkedin-presence-os\//)
+  })
+
+  it('has route-specific Open Graph metadata', () => {
+    expect(linkedinServiceHtml).toMatch(/property="og:title".*LinkedIn Presence OS/)
+    expect(linkedinServiceHtml).toMatch(/property="og:url".*services\/linkedin-presence-os\//)
+    expect(linkedinServiceHtml).toMatch(/property="og:description"/)
+  })
+
+  it('has service structured data', () => {
+    expect(linkedinServiceHtml).toMatch(/"@type": "Service"/)
+    expect(linkedinServiceHtml).toMatch(/"serviceType": "LinkedIn presence management"/)
+  })
+})
+
+describe('case study static pages', () => {
+  it('each case study has a route-specific static page with canonical metadata', () => {
+    Object.entries(caseStudyStaticPages).forEach(([slug, { file, title }]) => {
+      expect(file).toMatch(new RegExp(`<title>${title.replace(/[|]/g, '\\|')}<\\/title>`))
+      expect(file).toMatch(new RegExp(`rel="canonical".*case-studies/${slug}/`))
+      expect(file).toMatch(/property="og:title"/)
+    })
+  })
+})
+
+describe('demo static page', () => {
+  it('has route-specific title and canonical metadata', () => {
+    expect(demoHtml).toMatch(/<title>FP&A Platform Demo \| Buechler Pacific<\/title>/)
+    expect(demoHtml).toMatch(/rel="canonical".*https:\/\/buechlerpacific\.com\/demo\//)
+  })
+
+  it('includes a launch path to the interactive walkthrough', () => {
+    expect(demoHtml).toMatch(/href="\/demo\/live\/?"/)
+    expect(demoHtml).toMatch(/Interactive Demo/)
+  })
+})
+
+describe('demo live handoff page', () => {
+  it('has route-specific metadata and redirects to /demo', () => {
+    expect(demoLiveHtml).toMatch(/<title>Launch FP&A Platform Demo \| Buechler Pacific<\/title>/)
+    expect(demoLiveHtml).toMatch(/http-equiv="refresh".*url=\/demo\//)
+    expect(demoLiveHtml).toMatch(/window\.location\.replace\('\/demo\/'\)/)
+    expect(demoLiveHtml).toMatch(/Opening the FP&A Platform Demo/)
   })
 })

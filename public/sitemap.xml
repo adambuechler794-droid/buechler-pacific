@@ -7,33 +7,45 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://buechlerpacific.com/case-studies/swellscore</loc>
+    <loc>https://buechlerpacific.com/case-studies/swellscore/</loc>
     <lastmod>2026-03-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://buechlerpacific.com/case-studies/ai-agents-finance</loc>
+    <loc>https://buechlerpacific.com/case-studies/ai-agents-finance/</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://buechlerpacific.com/case-studies/close-transformation</loc>
+    <loc>https://buechlerpacific.com/case-studies/close-transformation/</loc>
     <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://buechlerpacific.com/case-studies/construction-analytics</loc>
+    <loc>https://buechlerpacific.com/case-studies/construction-analytics/</loc>
     <lastmod>2026-03-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://buechlerpacific.com/case-studies/enterprise-data-platform</loc>
+    <loc>https://buechlerpacific.com/case-studies/enterprise-data-platform/</loc>
     <lastmod>2026-03-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://buechlerpacific.com/services/linkedin-presence-os/</loc>
+    <lastmod>2026-04-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://buechlerpacific.com/demo/</loc>
+    <lastmod>2026-04-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
 </urlset>

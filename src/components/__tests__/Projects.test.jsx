@@ -45,7 +45,7 @@ describe('Projects', () => {
   it('each card links to the correct case study page', () => {
     render(<MemoryRouter><Projects /></MemoryRouter>)
     const links = screen.getAllByRole('link')
-    expect(links.some(l => l.getAttribute('href') === '/case-studies/swellscore')).toBe(true)
-    expect(links.some(l => l.getAttribute('href') === '/case-studies/enterprise-data-platform')).toBe(true)
+    expect(links.some(l => l.getAttribute('href') === '/case-studies/swellscore/')).toBe(true)
+    expect(links.some(l => l.getAttribute('href') === '/case-studies/enterprise-data-platform/')).toBe(true)
   })
 })

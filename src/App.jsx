@@ -33,14 +33,23 @@ function HomePage() {
 }
 
 export default function App() {
+  const demoElement = (
+    <Suspense fallback={<div className="min-h-screen bg-[#0d1117]" />}>
+      <DemoPage />
+    </Suspense>
+  )
+
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/case-studies/:slug" element={<CaseStudyPage />} />
         <Route path="/services/linkedin-presence-os" element={<LinkedInPresencePage />} />
-        <Route path="/demo" element={<Suspense fallback={<div className="min-h-screen bg-[#0d1117]" />}><DemoPage /></Suspense>} />
-        <Route path="/demo/live" element={<Suspense fallback={<div className="min-h-screen bg-[#0d1117]" />}><DemoPage /></Suspense>} />
+        <Route path="/services/linkedin-presence-os/" element={<LinkedInPresencePage />} />
+        <Route path="/demo" element={demoElement} />
+        <Route path="/demo/" element={demoElement} />
+        <Route path="/demo/live" element={demoElement} />
+        <Route path="/demo/live/" element={demoElement} />
       </Routes>
     </BrowserRouter>
   )

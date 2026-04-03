@@ -30,8 +30,8 @@ describe('Services', () => {
 
   it('marks AI & Intelligent Automation as the featured service', () => {
     render(<MemoryRouter><Services /></MemoryRouter>)
-    const aiCard = screen.getByText('AI & Intelligent Automation').closest('[class*="card-light"]')
-    expect(aiCard.className).toContain('md:col-span-2')
+    expect(screen.getByText('Flagship Capability')).toBeInTheDocument()
+    expect(screen.getByText('What This Includes')).toBeInTheDocument()
   })
 
   it('renders feature pills for each service', () => {

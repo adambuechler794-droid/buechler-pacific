@@ -175,11 +175,11 @@ export default function LinkedInPresencePage() {
                     href="/#contact"
                     className="inline-flex items-center justify-center gap-2 bg-apple-text text-white px-7 py-3.5 rounded-full font-medium hover:bg-black transition-colors duration-300"
                   >
-                    Book a Pilot Conversation
+                    Book a 30-Minute Fit Call
                     <ArrowRight size={16} />
                   </a>
                   <a
-                    href="mailto:adam.buechler@buechlerpacific.com?subject=LinkedIn%20Presence%20OS"
+                    href="mailto:adam.buechler@buechlerpacific.com?subject=LinkedIn%20Presence%20OS%20—%20Pilot%20Inquiry"
                     className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full font-medium border border-black/[0.08] text-apple-text hover:bg-apple-bg transition-colors duration-300"
                   >
                     Email Adam
@@ -200,9 +200,17 @@ export default function LinkedInPresencePage() {
                   ))}
                 </div>
                 <div className="mt-8 rounded-2xl bg-apple-bg p-5">
-                  <p className="text-sm font-medium text-apple-text mb-1">Current format</p>
+                  <p className="text-sm font-medium text-apple-text mb-1">Pilot pricing</p>
                   <p className="text-sm text-apple-secondary leading-relaxed">
-                    Available as a limited pilot service while the product layer is still being shaped.
+                    Engagements start at $1,500/month with a one-time $500 setup for voice calibration and radar build. Three-month minimum.
+                  </p>
+                </div>
+                <div className="mt-4 rounded-2xl bg-apple-bg p-5">
+                  <p className="text-sm font-medium text-apple-text mb-1">Built on a live system</p>
+                  <p className="text-sm text-apple-secondary leading-relaxed">
+                    This is the same proprietary platform that runs{' '}
+                    <a href="https://www.linkedin.com/in/adam-buechler/" target="_blank" rel="noopener noreferrer" className="text-apple-blue hover:underline">my own LinkedIn presence</a>.
+                    Not a demo. Not a mockup. A working system, patent pending.
                   </p>
                 </div>
               </div>
@@ -317,6 +325,10 @@ export default function LinkedInPresencePage() {
               Right now this is a limited, high-touch service. That is intentional. The value is not just
               in drafted posts. It is in having a system that keeps your voice sharp, your relationships
               warm, and your visibility consistent.
+            </p>
+            <p className="mt-4 text-base text-apple-secondary/70 leading-relaxed max-w-3xl mx-auto">
+              We start with a 30-minute call to see if there is fit. If there is, onboarding takes about a
+              week and the weekly loop starts running immediately after.
             </p>
 
             <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
